@@ -15,6 +15,13 @@
 		FE80F14E1C42904D000AD3FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE80F14C1C42904D000AD3FF /* LaunchScreen.storyboard */; };
 		FE80F1591C42904D000AD3FF /* TFSlideViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE80F1581C42904D000AD3FF /* TFSlideViewTests.m */; };
 		FE80F1641C42904D000AD3FF /* TFSlideViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE80F1631C42904D000AD3FF /* TFSlideViewUITests.m */; };
+		FE80F1851C429125000AD3FF /* DLLRUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FE80F1751C429125000AD3FF /* DLLRUCache.m */; };
+		FE80F1861C429125000AD3FF /* DLCustomSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE80F1771C429125000AD3FF /* DLCustomSlideView.m */; };
+		FE80F1871C429125000AD3FF /* DLSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE80F1791C429125000AD3FF /* DLSlideView.m */; };
+		FE80F1881C429125000AD3FF /* DLFixedTabbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE80F17C1C429125000AD3FF /* DLFixedTabbarView.m */; };
+		FE80F1891C429125000AD3FF /* DLScrollTabbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE80F17E1C429125000AD3FF /* DLScrollTabbarView.m */; };
+		FE80F18A1C429125000AD3FF /* DLTabedSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE80F1811C429125000AD3FF /* DLTabedSlideView.m */; };
+		FE80F18B1C429125000AD3FF /* DLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FE80F1831C429125000AD3FF /* DLUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +58,22 @@
 		FE80F15F1C42904D000AD3FF /* TFSlideViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFSlideViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE80F1631C42904D000AD3FF /* TFSlideViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFSlideViewUITests.m; sourceTree = "<group>"; };
 		FE80F1651C42904D000AD3FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE80F1731C429125000AD3FF /* DLCacheProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLCacheProtocol.h; sourceTree = "<group>"; };
+		FE80F1741C429125000AD3FF /* DLLRUCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLRUCache.h; sourceTree = "<group>"; };
+		FE80F1751C429125000AD3FF /* DLLRUCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLRUCache.m; sourceTree = "<group>"; };
+		FE80F1761C429125000AD3FF /* DLCustomSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLCustomSlideView.h; sourceTree = "<group>"; };
+		FE80F1771C429125000AD3FF /* DLCustomSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLCustomSlideView.m; sourceTree = "<group>"; };
+		FE80F1781C429125000AD3FF /* DLSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLSlideView.h; sourceTree = "<group>"; };
+		FE80F1791C429125000AD3FF /* DLSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLSlideView.m; sourceTree = "<group>"; };
+		FE80F17B1C429125000AD3FF /* DLFixedTabbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLFixedTabbarView.h; sourceTree = "<group>"; };
+		FE80F17C1C429125000AD3FF /* DLFixedTabbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLFixedTabbarView.m; sourceTree = "<group>"; };
+		FE80F17D1C429125000AD3FF /* DLScrollTabbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLScrollTabbarView.h; sourceTree = "<group>"; };
+		FE80F17E1C429125000AD3FF /* DLScrollTabbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLScrollTabbarView.m; sourceTree = "<group>"; };
+		FE80F17F1C429125000AD3FF /* DLSlideTabbarProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLSlideTabbarProtocol.h; sourceTree = "<group>"; };
+		FE80F1801C429125000AD3FF /* DLTabedSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTabedSlideView.h; sourceTree = "<group>"; };
+		FE80F1811C429125000AD3FF /* DLTabedSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTabedSlideView.m; sourceTree = "<group>"; };
+		FE80F1821C429125000AD3FF /* DLUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLUtility.h; sourceTree = "<group>"; };
+		FE80F1831C429125000AD3FF /* DLUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +124,14 @@
 		FE80F13D1C42904D000AD3FF /* TFSlideView */ = {
 			isa = PBXGroup;
 			children = (
+				FE80F1711C429125000AD3FF /* DLSlideView */,
+				FE80F1841C429125000AD3FF /* TFSlideView */,
 				FE80F1411C42904D000AD3FF /* AppDelegate.h */,
 				FE80F1421C42904D000AD3FF /* AppDelegate.m */,
 				FE80F1441C42904D000AD3FF /* ViewController.h */,
 				FE80F1451C42904D000AD3FF /* ViewController.m */,
 				FE80F1471C42904D000AD3FF /* Main.storyboard */,
 				FE80F14A1C42904D000AD3FF /* Assets.xcassets */,
-				FE80F14C1C42904D000AD3FF /* LaunchScreen.storyboard */,
-				FE80F14F1C42904D000AD3FF /* Info.plist */,
 				FE80F13E1C42904D000AD3FF /* Supporting Files */,
 			);
 			path = TFSlideView;
@@ -117,6 +140,8 @@
 		FE80F13E1C42904D000AD3FF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FE80F14C1C42904D000AD3FF /* LaunchScreen.storyboard */,
+				FE80F14F1C42904D000AD3FF /* Info.plist */,
 				FE80F13F1C42904D000AD3FF /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +163,52 @@
 				FE80F1651C42904D000AD3FF /* Info.plist */,
 			);
 			path = TFSlideViewUITests;
+			sourceTree = "<group>";
+		};
+		FE80F1711C429125000AD3FF /* DLSlideView */ = {
+			isa = PBXGroup;
+			children = (
+				FE80F1721C429125000AD3FF /* DLCache */,
+				FE80F1761C429125000AD3FF /* DLCustomSlideView.h */,
+				FE80F1771C429125000AD3FF /* DLCustomSlideView.m */,
+				FE80F1781C429125000AD3FF /* DLSlideView.h */,
+				FE80F1791C429125000AD3FF /* DLSlideView.m */,
+				FE80F17A1C429125000AD3FF /* DLTabbarView */,
+				FE80F1801C429125000AD3FF /* DLTabedSlideView.h */,
+				FE80F1811C429125000AD3FF /* DLTabedSlideView.m */,
+				FE80F1821C429125000AD3FF /* DLUtility.h */,
+				FE80F1831C429125000AD3FF /* DLUtility.m */,
+			);
+			path = DLSlideView;
+			sourceTree = "<group>";
+		};
+		FE80F1721C429125000AD3FF /* DLCache */ = {
+			isa = PBXGroup;
+			children = (
+				FE80F1731C429125000AD3FF /* DLCacheProtocol.h */,
+				FE80F1741C429125000AD3FF /* DLLRUCache.h */,
+				FE80F1751C429125000AD3FF /* DLLRUCache.m */,
+			);
+			path = DLCache;
+			sourceTree = "<group>";
+		};
+		FE80F17A1C429125000AD3FF /* DLTabbarView */ = {
+			isa = PBXGroup;
+			children = (
+				FE80F17B1C429125000AD3FF /* DLFixedTabbarView.h */,
+				FE80F17C1C429125000AD3FF /* DLFixedTabbarView.m */,
+				FE80F17D1C429125000AD3FF /* DLScrollTabbarView.h */,
+				FE80F17E1C429125000AD3FF /* DLScrollTabbarView.m */,
+				FE80F17F1C429125000AD3FF /* DLSlideTabbarProtocol.h */,
+			);
+			path = DLTabbarView;
+			sourceTree = "<group>";
+		};
+		FE80F1841C429125000AD3FF /* TFSlideView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TFSlideView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,9 +341,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE80F18A1C429125000AD3FF /* DLTabedSlideView.m in Sources */,
 				FE80F1461C42904D000AD3FF /* ViewController.m in Sources */,
 				FE80F1431C42904D000AD3FF /* AppDelegate.m in Sources */,
+				FE80F1861C429125000AD3FF /* DLCustomSlideView.m in Sources */,
+				FE80F18B1C429125000AD3FF /* DLUtility.m in Sources */,
+				FE80F1851C429125000AD3FF /* DLLRUCache.m in Sources */,
+				FE80F1871C429125000AD3FF /* DLSlideView.m in Sources */,
+				FE80F1891C429125000AD3FF /* DLScrollTabbarView.m in Sources */,
 				FE80F1401C42904D000AD3FF /* main.m in Sources */,
+				FE80F1881C429125000AD3FF /* DLFixedTabbarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +580,7 @@
 				FE80F16A1C42904D000AD3FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FE80F16B1C42904D000AD3FF /* Build configuration list for PBXNativeTarget "TFSlideViewTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +589,7 @@
 				FE80F16D1C42904D000AD3FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FE80F16E1C42904D000AD3FF /* Build configuration list for PBXNativeTarget "TFSlideViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +598,7 @@
 				FE80F1701C42904D000AD3FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
