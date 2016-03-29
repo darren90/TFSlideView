@@ -17,6 +17,7 @@
 		FE391E0A1CA97715004C8FA7 /* TFTableSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391E091CA97715004C8FA7 /* TFTableSlideView.swift */; };
 		FE391E0C1CA9773F004C8FA7 /* TFCustomSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391E0B1CA9773F004C8FA7 /* TFCustomSlideView.swift */; };
 		FE391E0F1CA977B7004C8FA7 /* TFTablebarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391E0E1CA977B7004C8FA7 /* TFTablebarItem.swift */; };
+		FE391E111CA978C8004C8FA7 /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE391E101CA978C8004C8FA7 /* TestTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		FE391E091CA97715004C8FA7 /* TFTableSlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFTableSlideView.swift; sourceTree = "<group>"; };
 		FE391E0B1CA9773F004C8FA7 /* TFCustomSlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFCustomSlideView.swift; sourceTree = "<group>"; };
 		FE391E0E1CA977B7004C8FA7 /* TFTablebarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFTablebarItem.swift; sourceTree = "<group>"; };
+		FE391E101CA978C8004C8FA7 /* TestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				FE391E051CA9769F004C8FA7 /* TFSlideView */,
 				FE391DD71CA975A5004C8FA7 /* AppDelegate.swift */,
 				FE391DD91CA975A5004C8FA7 /* ViewController.swift */,
+				FE391E101CA978C8004C8FA7 /* TestTableViewController.swift */,
 				FE391DDB1CA975A5004C8FA7 /* Main.storyboard */,
 				FE391E081CA976C5004C8FA7 /* TFSlideViewDemo */,
 				FE391DDE1CA975A5004C8FA7 /* Assets.xcassets */,
@@ -137,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				FE391E061CA9769F004C8FA7 /* TFCache */,
+				FE391E131CA98607004C8FA7 /* TFTabbarView */,
 				FE391E091CA97715004C8FA7 /* TFTableSlideView.swift */,
 				FE391E0E1CA977B7004C8FA7 /* TFTablebarItem.swift */,
 				FE391E0B1CA9773F004C8FA7 /* TFCustomSlideView.swift */,
@@ -147,7 +151,6 @@
 		FE391E061CA9769F004C8FA7 /* TFCache */ = {
 			isa = PBXGroup;
 			children = (
-				FE391E0D1CA9779C004C8FA7 /* TFTabbarView */,
 			);
 			path = TFCache;
 			sourceTree = "<group>";
@@ -159,7 +162,7 @@
 			path = TFSlideViewDemo;
 			sourceTree = "<group>";
 		};
-		FE391E0D1CA9779C004C8FA7 /* TFTabbarView */ = {
+		FE391E131CA98607004C8FA7 /* TFTabbarView */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -302,6 +305,7 @@
 				FE391E0A1CA97715004C8FA7 /* TFTableSlideView.swift in Sources */,
 				FE391DD81CA975A5004C8FA7 /* AppDelegate.swift in Sources */,
 				FE391E0C1CA9773F004C8FA7 /* TFCustomSlideView.swift in Sources */,
+				FE391E111CA978C8004C8FA7 /* TestTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
