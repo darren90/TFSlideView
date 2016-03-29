@@ -17,7 +17,7 @@
 #define kSelectedImageTagBase 3000
 
 #define KMargin 30
-#define KMarginMore 8
+#define KMarginMore 0//margin多出来的地址
 
 @implementation DLFixedTabbarViewTabItem
 @end
@@ -41,8 +41,8 @@
     [self addSubview:trackView_];
     trackView_.layer.cornerRadius = 2.0f;
 
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
-    [scrollView_ addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+//    [scrollView_ addGestureRecognizer:tap];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
@@ -80,12 +80,19 @@
         for (DLFixedTabbarViewTabItem *item in tabbarItems) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, height)];
             label.text = item.title;
-            label.font = [UIFont systemFontOfSize:15];
+//            label.font = [UIFont systemFontOfSize:15];
+            if (!item.titleFont) {
+                item.titleFont = [UIFont systemFontOfSize:15];
+            }
+            label.font = item.titleFont;//[UIFont systemFontOfSize:15];
             label.backgroundColor = [UIColor clearColor];
             label.textColor = item.titleColor;
             [label sizeToFit];
 
             label.tag = kLabelTagBase+i;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+            [label addGestureRecognizer:tap];
+            
             
             UIImageView *imageView = [[UIImageView alloc] initWithImage:item.image];
             [imageView sizeToFit];
@@ -100,8 +107,11 @@
             [scrollView_ addSubview:imageView];
             [scrollView_ addSubview:selectedImageView];
             i++;
+            
+            label.userInteractionEnabled = YES;
+            imageView.userInteractionEnabled = YES;
+            selectedImageView.userInteractionEnabled = YES;
         }
-        
 //        [self layoutTabbar];
     }
 }
@@ -122,7 +132,7 @@
     float x = 0.0f;
     float margin = 35;//label左右的间距
     for (NSInteger i=0; i<count; i++) {
-        x = i*width;
+//        x = i*width;
         UILabel *label = (UILabel *)[scrollView_ viewWithTag:kLabelTagBase+i];
         UIImageView *imageView = (UIImageView *)[scrollView_ viewWithTag:kImageTagBase+i];
         UIImageView *selectedIamgeView = (UIImageView *)[scrollView_ viewWithTag:kSelectedImageTagBase+i];
@@ -134,7 +144,6 @@
 
         imageView.frame = CGRectMake(label.frame.origin.x + label.bounds.size.width+kImageSpacingX, (height-imageView.bounds.size.height)/2.0, CGRectGetWidth(imageView.bounds), CGRectGetHeight(imageView.bounds));
         selectedIamgeView.frame = imageView.frame;
-        NSLog(@"--2--labelFF:%f--:%f--:%@-",inset,width,NSStringFromCGRect(label.frame));
     }
 
     UILabel *label = (UILabel *)[scrollView_ viewWithTag:kLabelTagBase+0];
@@ -143,7 +152,6 @@
     float trackX = (margin*(self.selectedIndex+1)+ inset+labelW *self.selectedIndex)-KMarginMore / 2;
     trackView_.frame = CGRectMake(trackX, trackView_.frame.origin.y, labelW+KMarginMore, kTrackViewHeight);
 //    trackView_.frame = CGRectMake(trackX, trackView_.frame.origin.y, width, kTrackViewHeight);
-
 }
 
 - (NSInteger)tabbarCount{
@@ -169,7 +177,7 @@
         toSelectedIamge.alpha = percent;
     }
     
-    float width = self.bounds.size.width/self.tabbarItems.count;
+//    float width = self.bounds.size.width/self.tabbarItems.count;
 //    float trackX;
     
     UILabel *label = (UILabel *)[scrollView_ viewWithTag:kLabelTagBase+0];
@@ -183,7 +191,6 @@
         trackX =trackX - (labelW+KMargin)*percent;// width*fromIndex - width*percent;//;
     }
 
-    NSLog(@"--------11------");
     trackView_.frame = CGRectMake(trackX, trackView_.frame.origin.y, CGRectGetWidth(trackView_.bounds), CGRectGetHeight(trackView_.bounds));
 }
 
@@ -209,30 +216,44 @@
             toSelectedIamge.alpha = 1.0f;
         }
         
-        float width = self.bounds.size.width/self.tabbarItems.count;
-//        float trackX = width*selectedIndex;
-        NSInteger count = self.tabbarItems.count;
-        UILabel *label = (UILabel *)[scrollView_ viewWithTag:kLabelTagBase+0];
-        CGFloat labelW = CGRectGetWidth(label.bounds);
-        CGFloat inset = (self.bounds.size.width - KMargin*(count+1) - count*labelW) /2;
-        float trackX = (KMargin*(selectedIndex+1)+ inset+labelW *selectedIndex)-KMarginMore / 2;
-
+//        float width = self.bounds.size.width/self.tabbarItems.count;
+////        float trackX = width*selectedIndex;
+//        NSInteger count = self.tabbarItems.count;
+//        UILabel *label = (UILabel *)[scrollView_ viewWithTag:kLabelTagBase+0];
+//        CGFloat labelW = CGRectGetWidth(label.bounds);
+//        CGFloat inset = (self.bounds.size.width - KMargin*(count+1) - count*labelW) /2;
+//        float trackX = (KMargin*(selectedIndex+1)+ inset+labelW *selectedIndex)-KMarginMore / 2;
+        
+        UILabel *label = (UILabel *)[scrollView_ viewWithTag:kLabelTagBase+selectedIndex];
+        float trackX = CGRectGetMinX(label.frame);
         
         trackView_.frame = CGRectMake(trackX, trackView_.frame.origin.y, CGRectGetWidth(trackView_.bounds), CGRectGetHeight(trackView_.bounds));
-        NSLog(@"--------22------");
 
         _selectedIndex = selectedIndex;
     }
 }
 
 - (void)tapAction:(UITapGestureRecognizer *)tap{
-    float width = self.bounds.size.width/self.tabbarItems.count;
-
-    CGPoint point = [tap locationInView:scrollView_];
-    NSInteger i = point.x/width;
+//    float width = self.bounds.size.width/self.tabbarItems.count;
+//
+//    CGPoint point = [tap locationInView:scrollView_];
+//    NSInteger i = point.x/width;
+//    self.selectedIndex = i;
+//    if (self.delegate) {
+//        NSLog(@"--self.selectedIndex:%ld",(long)i);
+//        [self.delegate DLSlideTabbar:self selectAt:i];
+//    }
+    NSInteger i = tap.view.tag - kLabelTagBase;
     self.selectedIndex = i;
     if (self.delegate) {
         [self.delegate DLSlideTabbar:self selectAt:i];
     }
 }
+
 @end
+
+
+
+
+
+

@@ -106,6 +106,7 @@
         barItem.selectedTitleColor = self.tabItemSelectedColor;
         barItem.image = item.image;
         barItem.selectedImage = item.selectedImage;
+        barItem.titleFont = self.titleFont;
         
         [tabbarItems addObject:barItem];
     }

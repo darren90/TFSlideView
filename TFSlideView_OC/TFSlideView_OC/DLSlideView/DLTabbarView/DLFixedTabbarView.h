@@ -15,6 +15,13 @@
 @property(nonatomic, strong) UIImage *selectedImage;
 @property(nonatomic, strong) UIColor *titleColor;
 @property(nonatomic, strong) UIColor *selectedTitleColor;
+
+
+/**
+ *  字体大小
+ */
+@property (nonatomic,strong)UIFont * titleFont;
+
 @end
 
 @interface DLFixedTabbarView : UIView<DLSlideTabbarProtocol>
