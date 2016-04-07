@@ -1,34 +1,43 @@
 //
-//  ViewController.m
+//  DLDemoViewController.m
 //  TFSlideView_OC
 //
-//  Created by Tengfei on 16/3/29.
+//  Created by Fengtf on 16/4/7.
 //  Copyright © 2016年 tengfei. All rights reserved.
 //
+// 2.获得RGB颜色
+#define MJColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define KRandomColor     [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0];
 
-#import "ViewController.h"
-#import "TFTabedSlideView.h"
-#import "TFCommon.h"
 
-@interface ViewController ()<TFTabedSlideViewDelegate>
-@property (weak, nonatomic) TFTabedSlideView *tabedSlideView;
+#import "DLDemoViewController.h"
+#import "DLTabedSlideView.h"
+
+@interface DLDemoViewController ()<DLTabedSlideViewDelegate>
+@property (weak, nonatomic) DLTabedSlideView *tabedSlideView;
 
 @end
 
-@implementation ViewController
+@implementation DLDemoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
     
     [self initSlideView];
+
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    
+}
 
 
 -(void)initSlideView
 {
-    TFTabedSlideView *tabedSlideView = [[TFTabedSlideView alloc]init];
+    DLTabedSlideView *tabedSlideView = [[DLTabedSlideView alloc]init];
     [self.view addSubview:tabedSlideView];
     tabedSlideView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
     self.tabedSlideView = tabedSlideView;
@@ -37,13 +46,13 @@
     self.tabedSlideView.tabItemNormalColor = MJColor(68, 68, 68);
     self.tabedSlideView.tabItemSelectedColor = MJColor(52, 174, 255);
     self.tabedSlideView.tabbarTrackColor = MJColor(52, 174, 255);
-    self.tabedSlideView.titleFont = [UIFont systemFontOfSize:16];
+    self.tabedSlideView.titleFont = [UIFont systemFontOfSize:17];
     self.tabedSlideView.tabbarBottomSpacing = 0.0;
     
-    TFTabedbarItem *item1 = [TFTabedbarItem itemWithTitle:@"综合"];
-    TFTabedbarItem *item2 = [TFTabedbarItem itemWithTitle:@"美剧(12)"];
-    TFTabedbarItem *item3 = [TFTabedbarItem itemWithTitle:@"视频"];
-    TFTabedbarItem *item4 = [TFTabedbarItem itemWithTitle:@"UP主(100)"];
+    DLTabedbarItem *item1 = [DLTabedbarItem itemWithTitle:@"综合"];
+    DLTabedbarItem *item2 = [DLTabedbarItem itemWithTitle:@"美剧"];
+    DLTabedbarItem *item3 = [DLTabedbarItem itemWithTitle:@"视频"];
+    DLTabedbarItem *item4 = [DLTabedbarItem itemWithTitle:@"UP主"];
     self.tabedSlideView.tabbarItems = @[item1, item2, item3,item4];
     [self.tabedSlideView buildTabbar];
     
@@ -63,11 +72,11 @@
 //    }
 //}
 
-- (NSInteger)numberOfTabsInDLTabedSlideView:(TFTabedSlideView *)sender{
+- (NSInteger)numberOfTabsInDLTabedSlideView:(DLTabedSlideView *)sender{
     return 4;
 }
 
-- (UIViewController *)TFTabedSlideView:(TFTabedSlideView *)sender controllerAt:(NSInteger)index{
+- (UIViewController *)DLTabedSlideView:(DLTabedSlideView *)sender controllerAt:(NSInteger)index{
     switch (index) {
         case 0: {
             UIViewController *ctrl = [[UIViewController alloc] init];
@@ -100,12 +109,6 @@
         default:
             return nil;
     }
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
