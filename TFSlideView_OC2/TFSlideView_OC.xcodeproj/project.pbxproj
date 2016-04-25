@@ -26,6 +26,7 @@
 		FE391EA61CAAC3F6004C8FA7 /* DLTabedSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE391E9D1CAAC3F6004C8FA7 /* DLTabedSlideView.m */; };
 		FE391EA71CAAC3F6004C8FA7 /* DLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FE391E9F1CAAC3F6004C8FA7 /* DLUtility.m */; };
 		FECEB2CF1CCE5FC400CEBABD /* TFSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FECEB2CE1CCE5FC400CEBABD /* TFSlideView.m */; };
+		FECEB2D21CCE609F00CEBABD /* TFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FECEB2D11CCE609F00CEBABD /* TFUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		FE391E9F1CAAC3F6004C8FA7 /* DLUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUtility.m; sourceTree = "<group>"; };
 		FECEB2CD1CCE5FC400CEBABD /* TFSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSlideView.h; sourceTree = "<group>"; };
 		FECEB2CE1CCE5FC400CEBABD /* TFSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFSlideView.m; sourceTree = "<group>"; };
+		FECEB2D01CCE609F00CEBABD /* TFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUtility.h; sourceTree = "<group>"; };
+		FECEB2D11CCE609F00CEBABD /* TFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +232,8 @@
 				892F49CA1CB60A38002126E3 /* TFFixedTabbarView.m */,
 				892F49C61CB607D2002126E3 /* TFTabedSlideView.h */,
 				892F49C71CB607D2002126E3 /* TFTabedSlideView.m */,
+				FECEB2D01CCE609F00CEBABD /* TFUtility.h */,
+				FECEB2D11CCE609F00CEBABD /* TFUtility.m */,
 			);
 			path = TFSlideView;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				892F49CB1CB60A38002126E3 /* TFFixedTabbarView.m in Sources */,
 				892F49C51CB6063F002126E3 /* DLDemoViewController.m in Sources */,
 				FE391E5C1CAAC3B8004C8FA7 /* main.m in Sources */,
+				FECEB2D21CCE609F00CEBABD /* TFUtility.m in Sources */,
 				FECEB2CF1CCE5FC400CEBABD /* TFSlideView.m in Sources */,
 				FE391EA41CAAC3F6004C8FA7 /* DLFixedTabbarView.m in Sources */,
 			);
