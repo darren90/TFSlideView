@@ -27,6 +27,8 @@
 		FE391EA71CAAC3F6004C8FA7 /* DLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FE391E9F1CAAC3F6004C8FA7 /* DLUtility.m */; };
 		FECEB2CF1CCE5FC400CEBABD /* TFSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FECEB2CE1CCE5FC400CEBABD /* TFSlideView.m */; };
 		FECEB2D21CCE609F00CEBABD /* TFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FECEB2D11CCE609F00CEBABD /* TFUtility.m */; };
+		FECEB2D51CCE62A400CEBABD /* TFCustomSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = FECEB2D41CCE62A400CEBABD /* TFCustomSlideView.m */; };
+		FECEB2D81CCE62DE00CEBABD /* TFScrollTabbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = FECEB2D71CCE62DE00CEBABD /* TFScrollTabbarView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,10 @@
 		FECEB2CE1CCE5FC400CEBABD /* TFSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFSlideView.m; sourceTree = "<group>"; };
 		FECEB2D01CCE609F00CEBABD /* TFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUtility.h; sourceTree = "<group>"; };
 		FECEB2D11CCE609F00CEBABD /* TFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUtility.m; sourceTree = "<group>"; };
+		FECEB2D31CCE62A400CEBABD /* TFCustomSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFCustomSlideView.h; sourceTree = "<group>"; };
+		FECEB2D41CCE62A400CEBABD /* TFCustomSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFCustomSlideView.m; sourceTree = "<group>"; };
+		FECEB2D61CCE62DE00CEBABD /* TFScrollTabbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFScrollTabbarView.h; sourceTree = "<group>"; };
+		FECEB2D71CCE62DE00CEBABD /* TFScrollTabbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFScrollTabbarView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,8 +236,12 @@
 				FECEB2CE1CCE5FC400CEBABD /* TFSlideView.m */,
 				892F49C91CB60A38002126E3 /* TFFixedTabbarView.h */,
 				892F49CA1CB60A38002126E3 /* TFFixedTabbarView.m */,
+				FECEB2D61CCE62DE00CEBABD /* TFScrollTabbarView.h */,
+				FECEB2D71CCE62DE00CEBABD /* TFScrollTabbarView.m */,
 				892F49C61CB607D2002126E3 /* TFTabedSlideView.h */,
 				892F49C71CB607D2002126E3 /* TFTabedSlideView.m */,
+				FECEB2D31CCE62A400CEBABD /* TFCustomSlideView.h */,
+				FECEB2D41CCE62A400CEBABD /* TFCustomSlideView.m */,
 				FECEB2D01CCE609F00CEBABD /* TFUtility.h */,
 				FECEB2D11CCE609F00CEBABD /* TFUtility.m */,
 			);
@@ -377,12 +387,14 @@
 				FE391EA31CAAC3F6004C8FA7 /* DLSlideView.m in Sources */,
 				892F49C81CB607D2002126E3 /* TFTabedSlideView.m in Sources */,
 				FE391EA51CAAC3F6004C8FA7 /* DLScrollTabbarView.m in Sources */,
+				FECEB2D81CCE62DE00CEBABD /* TFScrollTabbarView.m in Sources */,
 				892F49CB1CB60A38002126E3 /* TFFixedTabbarView.m in Sources */,
 				892F49C51CB6063F002126E3 /* DLDemoViewController.m in Sources */,
 				FE391E5C1CAAC3B8004C8FA7 /* main.m in Sources */,
 				FECEB2D21CCE609F00CEBABD /* TFUtility.m in Sources */,
 				FECEB2CF1CCE5FC400CEBABD /* TFSlideView.m in Sources */,
 				FE391EA41CAAC3F6004C8FA7 /* DLFixedTabbarView.m in Sources */,
+				FECEB2D51CCE62A400CEBABD /* TFCustomSlideView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
