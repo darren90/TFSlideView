@@ -234,16 +234,16 @@
 			children = (
 				FECEB2CD1CCE5FC400CEBABD /* TFSlideView.h */,
 				FECEB2CE1CCE5FC400CEBABD /* TFSlideView.m */,
-				892F49C91CB60A38002126E3 /* TFFixedTabbarView.h */,
-				892F49CA1CB60A38002126E3 /* TFFixedTabbarView.m */,
 				FECEB2D61CCE62DE00CEBABD /* TFScrollTabbarView.h */,
 				FECEB2D71CCE62DE00CEBABD /* TFScrollTabbarView.m */,
-				892F49C61CB607D2002126E3 /* TFTabedSlideView.h */,
-				892F49C71CB607D2002126E3 /* TFTabedSlideView.m */,
 				FECEB2D31CCE62A400CEBABD /* TFCustomSlideView.h */,
 				FECEB2D41CCE62A400CEBABD /* TFCustomSlideView.m */,
 				FECEB2D01CCE609F00CEBABD /* TFUtility.h */,
 				FECEB2D11CCE609F00CEBABD /* TFUtility.m */,
+				892F49C91CB60A38002126E3 /* TFFixedTabbarView.h */,
+				892F49CA1CB60A38002126E3 /* TFFixedTabbarView.m */,
+				892F49C61CB607D2002126E3 /* TFTabedSlideView.h */,
+				892F49C71CB607D2002126E3 /* TFTabedSlideView.m */,
 			);
 			path = TFSlideView;
 			sourceTree = "<group>";
