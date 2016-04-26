@@ -10,7 +10,6 @@
 
 @implementation TFUtility
 
-
 + (UIColor *)getColorOfPercent:(CGFloat)percent between:(UIColor *)color1 and:(UIColor *)color2{
     CGFloat red1, green1, blue1, alpha1;
     [color1 getRed:&red1 green:&green1 blue:&blue1 alpha:&alpha1];
