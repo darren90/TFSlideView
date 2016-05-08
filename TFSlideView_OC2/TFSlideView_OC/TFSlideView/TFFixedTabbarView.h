@@ -38,4 +38,5 @@
 @property(nonatomic, weak) id<DLSlideTabbarDelegate> delegate;
 - (void)switchingFrom:(NSInteger)fromIndex to:(NSInteger)toIndex percent:(float)percent;
 
+
 @end
