@@ -35,7 +35,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="TFSlideView" id="2yB-MX-55c">
-                        <barButtonItem key="rightBarButtonItem" title="Jump" id="wcd-H8-2Tn">
+                        <barButtonItem key="leftBarButtonItem" title="多" id="yDf-21-mre">
+                            <connections>
+                                <segue destination="IKG-OL-XIz" kind="push" id="0In-Ke-A7g"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="少" id="wcd-H8-2Tn">
                             <connections>
                                 <segue destination="Z95-2B-RpB" kind="push" id="oFh-3s-9LE"/>
                             </connections>
@@ -45,6 +50,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="64" y="301"/>
+        </scene>
+        <!--多个-->
+        <scene sceneID="Uc2-tJ-evt">
+            <objects>
+                <viewController id="IKG-OL-XIz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i59-85-e6I"/>
+                        <viewControllerLayoutGuide type="bottom" id="uW7-8a-wOm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="plE-ot-usJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="多个" id="TzM-vh-vWA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qxJ-0Y-Y4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="1031"/>
         </scene>
         <!--DLSlideView-->
         <scene sceneID="fOh-pa-Piu">
