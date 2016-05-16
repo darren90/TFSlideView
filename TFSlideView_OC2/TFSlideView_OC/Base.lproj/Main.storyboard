@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -35,11 +36,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="TFSlideView" id="2yB-MX-55c">
-                        <barButtonItem key="leftBarButtonItem" title="多" id="yDf-21-mre">
-                            <connections>
-                                <segue destination="IKG-OL-XIz" kind="push" id="0In-Ke-A7g"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="多" id="yDf-21-mre">
+                                <connections>
+                                    <segue destination="IKG-OL-XIz" kind="push" id="0In-Ke-A7g"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="多2" id="xCo-H0-zhX">
+                                <connections>
+                                    <segue destination="loC-Si-Srw" kind="push" id="Aa9-aN-daC"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="少" id="wcd-H8-2Tn">
                             <connections>
                                 <segue destination="Z95-2B-RpB" kind="push" id="oFh-3s-9LE"/>
@@ -51,10 +59,29 @@
             </objects>
             <point key="canvasLocation" x="64" y="301"/>
         </scene>
-        <!--多个-->
+        <!--第2种-->
+        <scene sceneID="75a-oB-Khv">
+            <objects>
+                <viewController id="loC-Si-Srw" customClass="TFDemo3ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="arn-7a-AmV"/>
+                        <viewControllerLayoutGuide type="bottom" id="jHN-tK-IQy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eN3-jy-pSS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="第2种" id="i5f-5B-yqd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bgL-8g-1p3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="514" y="1090"/>
+        </scene>
+        <!--第一种-->
         <scene sceneID="Uc2-tJ-evt">
             <objects>
-                <viewController id="IKG-OL-XIz" sceneMemberID="viewController">
+                <viewController id="IKG-OL-XIz" customClass="TFDemo2ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="i59-85-e6I"/>
                         <viewControllerLayoutGuide type="bottom" id="uW7-8a-wOm"/>
@@ -64,11 +91,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="多个" id="TzM-vh-vWA"/>
+                    <navigationItem key="navigationItem" title="第一种" id="TzM-vh-vWA"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxJ-0Y-Y4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="1031"/>
+            <point key="canvasLocation" x="-708" y="1090"/>
         </scene>
         <!--DLSlideView-->
         <scene sceneID="fOh-pa-Piu">
