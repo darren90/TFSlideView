@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DLSlideTabbarProtocol.h"
+//#import "DLSlideTabbarProtocol.h"
+#import "TFScrollTabbarView.h"
 
 #pragma mark - TFFixedTabbarViewTabItem
 @interface TFFixedTabbarViewTabItem : NSObject
@@ -27,7 +28,7 @@
 
 #pragma mark - TFFixedTabbarView
 
-@interface TFFixedTabbarView : UIView<DLSlideTabbarProtocol>
+@interface TFFixedTabbarView : UIView<TFSlideTabbarProtocol>
 
 @property(nonatomic, strong) UIImage *backgroundImage;
 @property(nonatomic, strong) UIColor *trackColor;
@@ -35,8 +36,7 @@
 
 @property(nonatomic, assign) NSInteger selectedIndex;
 @property(nonatomic, readonly) NSInteger tabbarCount;
-@property(nonatomic, weak) id<DLSlideTabbarDelegate> delegate;
+@property(nonatomic, weak) id<TFSlideTabbarDelegate> delegate;
 - (void)switchingFrom:(NSInteger)fromIndex to:(NSInteger)toIndex percent:(float)percent;
-
 
 @end

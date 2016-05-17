@@ -13,13 +13,22 @@
 @property(nonatomic, strong) NSString *title;
 @property(nonatomic, assign) CGFloat width;
 + (TFScrollTabbarItem *)itemWithTitle:(NSString *)title width:(CGFloat)width;
-
 @end
 
+#pragma mark - TFSlideTabbarDelegate
+
 @protocol TFSlideTabbarDelegate <NSObject>
+- (void)TFSlideTabbar:(id)sender selectAt:(NSInteger)index;
+@end
 
-- (void)DLSlideTabbar:(id)sender selectAt:(NSInteger)index;
 
+#pragma mark - TFSlideTabbarProtocol
+
+@protocol TFSlideTabbarProtocol <NSObject>
+@property(nonatomic, assign) NSInteger selectedIndex;
+@property(nonatomic, readonly) NSInteger tabbarCount;
+@property(nonatomic, weak) id<TFSlideTabbarDelegate> delegate;
+- (void)switchingFrom:(NSInteger)fromIndex to:(NSInteger)toIndex percent:(float)percent;
 @end
 
 
@@ -39,5 +48,4 @@
 @property(nonatomic, weak) id<TFSlideTabbarDelegate> delegate;
 - (void)switchingFrom:(NSInteger)fromIndex to:(NSInteger)toIndex percent:(float)percent;
 
- 
 @end

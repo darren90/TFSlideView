@@ -130,21 +130,7 @@
 }
 
 - (void)layoutTabbar{
-    //    float width = self.bounds.size.width/self.tabbarItems.count;
-    //    float height = self.bounds.size.height;
-    //    float x = 0.0f;
-    //    for (NSInteger i=0; i<self.tabbarItems.count; i++) {
-    //        x = i*width;
-    //        UILabel *label = (UILabel *)[scrollView_ viewWithTag:kLabelTagBase+i];
-    //        UIImageView *imageView = (UIImageView *)[scrollView_ viewWithTag:kImageTagBase+i];
-    //        UIImageView *selectedIamgeView = (UIImageView *)[scrollView_ viewWithTag:kSelectedImageTagBase+i];
-    //        label.frame = CGRectMake(x + (width-label.bounds.size.width-CGRectGetWidth(imageView.bounds))/2.0f, (height-label.bounds.size.height)/2.0f, CGRectGetWidth(label.bounds), CGRectGetHeight(label.bounds));
-    //        imageView.frame = CGRectMake(label.frame.origin.x + label.bounds.size.width+kImageSpacingX, (height-imageView.bounds.size.height)/2.0, CGRectGetWidth(imageView.bounds), CGRectGetHeight(imageView.bounds));
-    //        selectedIamgeView.frame = imageView.frame;
-    //    }
     
-    //    float trackX = width*self.selectedIndex;
-    //    trackView_.frame = CGRectMake(trackX, trackView_.frame.origin.y, width, kTrackViewHeight);
 }
 
 - (NSInteger)tabbarCount{
@@ -223,7 +209,7 @@
     NSInteger i = tap.view.tag - kViewTagBase;
     self.selectedIndex = i;
     if (self.delegate) {
-        [self.delegate DLSlideTabbar:self selectAt:i];
+        [self.delegate TFSlideTabbar:self selectAt:i];
     }
 }
 

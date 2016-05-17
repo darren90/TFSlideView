@@ -7,37 +7,42 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DLSlideTabbarProtocol.h"
-#import "DLSlideView.h"
-#import "DLTabedSlideView.h"
-#import "DLCacheProtocol.h"
+#import "TFScrollTabbarView.h"
+#import "TFSlideView.h"
+#import "TFPageSlideView.h"
+#import "TFLRUCache.h"
 
+//#import "DLSlideTabbarProtocol.h"
+//#import "DLSlideView.h"
+//#import "DLTabedSlideView.h"
+//#import "DLCacheProtocol.h"
 
 @class TFMultiSlideView;
 @protocol TFMultiSlideViewDelegate <NSObject>
-- (NSInteger)numberOfTabsInDLCustomSlideView:(TFMultiSlideView *)sender;
-- (UIViewController *)DLCustomSlideView:(TFMultiSlideView *)sender controllerAt:(NSInteger)index;
+- (NSInteger)numberOfTabsInTFCustomSlideView:(TFMultiSlideView *)sender;
+- (UIViewController *)TFCustomSlideView:(TFMultiSlideView *)sender controllerAt:(NSInteger)index;
 @optional
-- (void)DLCustomSlideView:(TFMultiSlideView *)sender didSelectedAt:(NSInteger)index;
+- (void)TFCustomSlideView:(TFMultiSlideView *)sender didSelectedAt:(NSInteger)index;
 @end
 
 #pragma mark - Delegate
 
-@interface TFMultiSlideView : UIView<DLSlideTabbarDelegate, DLSlideViewDelegate, DLSlideViewDataSource>
+@interface TFMultiSlideView : UIView<TFSlideTabbarDelegate, TFSlideViewDelegate, TFSlideViewDataSource>
 
 @property(nonatomic, weak) UIViewController *baseViewController;
 @property(nonatomic, assign) NSInteger selectedIndex;
 
 // tabbar
-@property(nonatomic, strong) UIView<DLSlideTabbarProtocol> *tabbar;
+@property(nonatomic, strong) UIView<TFSlideTabbarProtocol> *tabbar;
 @property(nonatomic, assign) float tabbarBottomSpacing;
 
 // cache properties
-@property(nonatomic, strong) id<DLCacheProtocol> cache;
+@property(nonatomic, strong) id<TFLRUCacheProtocol> cache;
 
 // delegate
 @property(nonatomic, weak)IBOutlet id<TFMultiSlideViewDelegate>delegate;
 
 // init method. 初始分方法
 - (void)setup;
+
 @end

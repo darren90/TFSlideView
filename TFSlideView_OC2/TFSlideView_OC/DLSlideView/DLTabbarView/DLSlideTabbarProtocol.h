@@ -13,6 +13,7 @@
 @end
 
 @protocol DLSlideTabbarProtocol <NSObject>
+
 @property(nonatomic, assign) NSInteger selectedIndex;
 @property(nonatomic, readonly) NSInteger tabbarCount;
 @property(nonatomic, weak) id<DLSlideTabbarDelegate> delegate;

@@ -261,7 +261,7 @@
     NSInteger i = tap.view.tag - kLabelTagBase;
     self.selectedIndex = i;
     if (self.delegate) {
-        [self.delegate DLSlideTabbar:self selectAt:i];
+        [self.delegate TFSlideTabbar:self selectAt:i];
     }
 }
 

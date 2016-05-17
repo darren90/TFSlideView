@@ -17,7 +17,7 @@
 
 @implementation TFMultiSlideView
 {
-    DLSlideView *slideView_;
+    TFSlideView *slideView_;
 }
 
 - (void)commonInit{
@@ -44,7 +44,7 @@
     self.tabbar.delegate = self;
     [self addSubview:self.tabbar];
     
-    slideView_ = [[DLSlideView alloc] initWithFrame:CGRectMake(0, self.tabbar.frame.size.height+self.tabbarBottomSpacing, self.bounds.size.width, self.bounds.size.height-self.tabbar.frame.size.height-self.tabbarBottomSpacing)];
+    slideView_ = [[TFSlideView alloc] initWithFrame:CGRectMake(0, self.tabbar.frame.size.height+self.tabbarBottomSpacing, self.bounds.size.width, self.bounds.size.height-self.tabbar.frame.size.height-self.tabbarBottomSpacing)];
     slideView_.delegate = self;
     slideView_.dataSource = self;
     slideView_.baseViewController = self.baseViewController;
@@ -76,32 +76,34 @@
     [slideView_ setSelectedIndex:index];
 }
 
-- (NSInteger)numberOfControllersInDLSlideView:(DLSlideView *)sender{
-    return [self.delegate numberOfTabsInDLCustomSlideView:self];
+-(NSInteger)numberOfControllersInDLSlideView:(TFSlideView *)sender{
+    return [self.delegate numberOfTabsInTFCustomSlideView:self];
 }
 
-- (UIViewController *)DLSlideView:(DLSlideView *)sender controllerAt:(NSInteger)index{
+-(UIViewController *)TFSlideView:(TFSlideView *)sender controllerAt:(NSInteger)index{
     NSString *key = [NSString stringWithFormat:@"%ld", (long)index];
     if ([self.cache objectForKey:key]) {
         return [self.cache objectForKey:key];
     }
     else{
-        UIViewController *ctrl = [self.delegate DLCustomSlideView:self controllerAt:index];
+        UIViewController *ctrl = [self.delegate TFCustomSlideView:self controllerAt:index];
         [self.cache setObject:ctrl forKey:key];
         return ctrl;
     }
 }
 
-- (void)DLSlideView:(DLSlideView *)slide switchingFrom:(NSInteger)oldIndex to:(NSInteger)toIndex percent:(float)percent{
+-(void)TFSlideView:(TFSlideView *)slide switchingFrom:(NSInteger)oldIndex to:(NSInteger)toIndex percent:(float)percent{
     [self.tabbar switchingFrom:oldIndex to:toIndex percent:percent];
 }
-- (void)DLSlideView:(DLSlideView *)slide didSwitchTo:(NSInteger)index{
+
+-(void)TFSlideView:(TFSlideView *)slide didSwitchTo:(NSInteger)index{
     [self.tabbar setSelectedIndex:index];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(DLTabedSlideView:didSelectedAt:)]) {
-        [self.delegate DLCustomSlideView:self didSelectedAt:index];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(TFCustomSlideView:didSelectedAt:)]) {
+        [self.delegate TFCustomSlideView:self didSelectedAt:index];
     }
 }
-- (void)DLSlideView:(DLSlideView *)slide switchCanceled:(NSInteger)oldIndex{
+
+-(void)TFSlideView:(TFSlideView *)slide switchCanceled:(NSInteger)oldIndex{
     [self.tabbar setSelectedIndex:oldIndex];
 }
 

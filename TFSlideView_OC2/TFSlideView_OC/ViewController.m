@@ -7,11 +7,12 @@
 //
 
 #import "ViewController.h"
-#import "TFTabedSlideView.h"
+//#import "TFTabedSlideView.h"
+#import "TFPageSlideView.h"
 #import "TFCommon.h"
 
-@interface ViewController ()<TFTabedSlideViewDelegate>
-@property (weak, nonatomic) TFTabedSlideView *tabedSlideView;
+@interface ViewController ()<TFPageSlideViewDelegate>
+@property (weak, nonatomic) TFPageSlideView *tabedSlideView;
 
 @end
 
@@ -28,7 +29,7 @@
 
 -(void)initSlideView
 {
-    TFTabedSlideView *tabedSlideView = [[TFTabedSlideView alloc]init];
+    TFPageSlideView *tabedSlideView = [[TFPageSlideView alloc]init];
     [self.view addSubview:tabedSlideView];
     tabedSlideView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
     self.tabedSlideView = tabedSlideView;
@@ -63,11 +64,12 @@
 //    }
 //}
 
-- (NSInteger)numberOfTabsInDLTabedSlideView:(TFTabedSlideView *)sender{
+
+-(NSInteger)numberOfTabsInTFPageSlideView:(TFPageSlideView *)sender{
     return 4;
 }
 
-- (UIViewController *)TFTabedSlideView:(TFTabedSlideView *)sender controllerAt:(NSInteger)index{
+- (UIViewController *)TFPageSlideView:(TFPageSlideView *)sender controllerAt:(NSInteger)index{
     switch (index) {
         case 0: {
             UIViewController *ctrl = [[UIViewController alloc] init];
