@@ -20,7 +20,6 @@
 
 #pragma mark - TFTabedbarItem
 
-
 @implementation TFTabedbarItem
 + (TFTabedbarItem *)itemWithTitle:(NSString *)title
 {
@@ -39,7 +38,6 @@
 }
 
 @end
-
 
 
 #pragma mark - TFPageSlideView

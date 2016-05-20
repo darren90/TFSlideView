@@ -18,7 +18,6 @@
 @property(nonatomic, strong) UIColor *titleColor;
 @property(nonatomic, strong) UIColor *selectedTitleColor;
 
-
 /**
  *  字体大小
  */

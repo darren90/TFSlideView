@@ -7,7 +7,7 @@
 //
 
 #import "TFFixedTabbarView.h"
-#import "DLUtility.h"
+#import "TFUtility.h"
 //#import ""
 #import "TFCommon.h"
 
@@ -207,13 +207,13 @@
     TFFixedTabbarViewTabItem *fromItem = [self.tabbarItems objectAtIndex:fromIndex];
     UIView *fromView = (UIView *)[scrollView_ viewWithTag:kBGViewTagBase + fromIndex];
     UILabel *fromLabel = (UILabel *)[fromView viewWithTag:kLabelTagBase + fromIndex];
-    fromLabel.textColor = [DLUtility getColorOfPercent:percent between:fromItem.titleColor and:fromItem.selectedTitleColor];
+    fromLabel.textColor = [TFUtility getColorOfPercent:percent between:fromItem.titleColor and:fromItem.selectedTitleColor];
     
     if (toIndex >= 0 && toIndex < [self tabbarCount]) {
         TFFixedTabbarViewTabItem *toItem = [self.tabbarItems objectAtIndex:toIndex];
         UIView *bgView = (UIView *)[scrollView_ viewWithTag:kBGViewTagBase + toIndex];
         UILabel *toLabel = (UILabel *)[bgView viewWithTag:kLabelTagBase + toIndex];
-        toLabel.textColor = [DLUtility getColorOfPercent:percent between:toItem.selectedTitleColor and:toItem.titleColor];
+        toLabel.textColor = [TFUtility getColorOfPercent:percent between:toItem.selectedTitleColor and:toItem.titleColor];
 
     UIView *fromBgView = (UIView *)[scrollView_ viewWithTag:kBGViewTagBase + fromIndex];//sure
     UIView *toBgView = (UIView *)[scrollView_ viewWithTag:kBGViewTagBase + toIndex];//sure
