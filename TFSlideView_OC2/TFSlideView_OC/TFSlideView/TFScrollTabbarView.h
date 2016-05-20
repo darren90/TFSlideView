@@ -41,6 +41,7 @@
 @property (nonatomic, assign) CGFloat tabItemNormalFontSize;
 @property(nonatomic, strong) UIColor *trackColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) NSArray *tabbarItems;
+@property(nonatomic, strong) NSArray *mutiItems;//item数据
 
 // DLSlideTabbarProtocol
 @property(nonatomic, assign) NSInteger selectedIndex;

@@ -19,10 +19,10 @@
 
 @class TFMultiSlideView;
 @protocol TFMultiSlideViewDelegate <NSObject>
-- (NSInteger)numberOfTabsInTFCustomSlideView:(TFMultiSlideView *)sender;
-- (UIViewController *)TFCustomSlideView:(TFMultiSlideView *)sender controllerAt:(NSInteger)index;
+- (NSInteger)numberOfTabsInTFMultiSlideView:(TFMultiSlideView *)sender;
+- (UIViewController *)TFMultiSlideView:(TFMultiSlideView *)sender controllerAt:(NSInteger)index;
 @optional
-- (void)TFCustomSlideView:(TFMultiSlideView *)sender didSelectedAt:(NSInteger)index;
+- (void)TFMultiSlideView:(TFMultiSlideView *)sender didSelectedAt:(NSInteger)index;
 @end
 
 #pragma mark - Delegate

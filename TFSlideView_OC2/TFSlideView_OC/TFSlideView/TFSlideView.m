@@ -236,10 +236,6 @@
         }
         else{
             if (panToIndex != panToIndex_) {
-                //fix bug #5
-                //                if (willCtrl_) {
-                //                    [self removeWill];
-                //                }
                 willCtrl_ = [self.dataSource TFSlideView:self controllerAt:panToIndex];
                 [self.baseViewController addChildViewController:willCtrl_];
                 [willCtrl_ willMoveToParentViewController:self.baseViewController];

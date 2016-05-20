@@ -11,10 +11,11 @@
 
 
 #import "DLDemoViewController.h"
-#import "DLTabedSlideView.h"
+//#import "DLTabedSlideView.h"
+#import "TFPageSlideView.h"
 
-@interface DLDemoViewController ()<DLTabedSlideViewDelegate>
-@property (weak, nonatomic) DLTabedSlideView *tabedSlideView;
+@interface DLDemoViewController ()<TFPageSlideViewDelegate>
+@property (weak, nonatomic) TFPageSlideView *tabedSlideView;
 
 @end
 
@@ -37,7 +38,7 @@
 
 -(void)initSlideView
 {
-    DLTabedSlideView *tabedSlideView = [[DLTabedSlideView alloc]init];
+    TFPageSlideView *tabedSlideView = [[TFPageSlideView alloc]init];
     [self.view addSubview:tabedSlideView];
     tabedSlideView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
     self.tabedSlideView = tabedSlideView;
@@ -49,10 +50,10 @@
     self.tabedSlideView.titleFont = [UIFont systemFontOfSize:17];
     self.tabedSlideView.tabbarBottomSpacing = 0.0;
     
-    DLTabedbarItem *item1 = [DLTabedbarItem itemWithTitle:@"综合"];
-    DLTabedbarItem *item2 = [DLTabedbarItem itemWithTitle:@"美剧"];
-    DLTabedbarItem *item3 = [DLTabedbarItem itemWithTitle:@"视频"];
-    DLTabedbarItem *item4 = [DLTabedbarItem itemWithTitle:@"UP主"];
+    TFTabedbarItem *item1 = [TFTabedbarItem itemWithTitle:@"综合"];
+    TFTabedbarItem *item2 = [TFTabedbarItem itemWithTitle:@"美剧"];
+    TFTabedbarItem *item3 = [TFTabedbarItem itemWithTitle:@"视频"];
+    TFTabedbarItem *item4 = [TFTabedbarItem itemWithTitle:@"UP主"];
     self.tabedSlideView.tabbarItems = @[item1, item2, item3,item4];
     [self.tabedSlideView buildTabbar];
     
@@ -72,11 +73,11 @@
 //    }
 //}
 
-- (NSInteger)numberOfTabsInDLTabedSlideView:(DLTabedSlideView *)sender{
+-(NSInteger)numberOfTabsInTFPageSlideView:(TFPageSlideView *)sender{
     return 4;
 }
 
-- (UIViewController *)DLTabedSlideView:(DLTabedSlideView *)sender controllerAt:(NSInteger)index{
+-(UIViewController *)TFPageSlideView:(TFPageSlideView *)sender controllerAt:(NSInteger)index{
     switch (index) {
         case 0: {
             UIViewController *ctrl = [[UIViewController alloc] init];
@@ -110,5 +111,6 @@
             return nil;
     }
 }
+
 
 @end

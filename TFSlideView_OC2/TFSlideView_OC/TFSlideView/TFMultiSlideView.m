@@ -72,21 +72,22 @@
     [self.tabbar setSelectedIndex:selectedIndex];
 }
 
-- (void)DLSlideTabbar:(id)sender selectAt:(NSInteger)index{
+//- (void)DLSlideTabbar:(id)sender selectAt:(NSInteger)index
+-(void)TFSlideTabbar:(id)sender selectAt:(NSInteger)index{
     [slideView_ setSelectedIndex:index];
 }
 
+
 -(NSInteger)numberOfControllersInDLSlideView:(TFSlideView *)sender{
-    return [self.delegate numberOfTabsInTFCustomSlideView:self];
+    return [self.delegate numberOfTabsInTFMultiSlideView:self];
 }
 
 -(UIViewController *)TFSlideView:(TFSlideView *)sender controllerAt:(NSInteger)index{
     NSString *key = [NSString stringWithFormat:@"%ld", (long)index];
     if ([self.cache objectForKey:key]) {
         return [self.cache objectForKey:key];
-    }
-    else{
-        UIViewController *ctrl = [self.delegate TFCustomSlideView:self controllerAt:index];
+    }else{
+        UIViewController *ctrl = [self.delegate TFMultiSlideView:self controllerAt:index];
         [self.cache setObject:ctrl forKey:key];
         return ctrl;
     }
@@ -98,8 +99,8 @@
 
 -(void)TFSlideView:(TFSlideView *)slide didSwitchTo:(NSInteger)index{
     [self.tabbar setSelectedIndex:index];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(TFCustomSlideView:didSelectedAt:)]) {
-        [self.delegate TFCustomSlideView:self didSelectedAt:index];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(TFMultiSlideView:didSelectedAt:)]) {
+        [self.delegate TFMultiSlideView:self didSelectedAt:index];
     }
 }
 

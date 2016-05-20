@@ -9,8 +9,10 @@
 #import "TFPageSlideView.h"
 //#import "DLFixedTabbarView.h"
 #import "TFFixedTabbarView.h"
-#import "DLSlideView.h"
-#import "DLLRUCache.h"
+//#import "DLSlideView.h"
+#import "TFSlideView.h"
+//#import "DLLRUCache.h"
+#import "TFLRUCache.h"
 
 #define kDefaultTabbarHeight 34
 #define kDefaultTabbarBottomSpacing 0
@@ -42,16 +44,16 @@
 
 #pragma mark - TFPageSlideView
 
-@interface TFPageSlideView ()<DLSlideViewDelegate, DLSlideViewDataSource>
+@interface TFPageSlideView ()<TFSlideViewDelegate, TFSlideViewDataSource>
 
 @end
 
 @implementation TFPageSlideView
 
 {
-    DLSlideView *slideView_;
+    TFSlideView *slideView_;
     TFFixedTabbarView *tabbar_;
-    DLLRUCache *ctrlCache_;
+    TFLRUCache *ctrlCache_;
 }
 
 
@@ -63,12 +65,12 @@
     tabbar_.delegate = self;
     [self addSubview:tabbar_];
     
-    slideView_ = [[DLSlideView alloc] initWithFrame:CGRectMake(0, self.tabbarHeight+self.tabbarBottomSpacing, self.bounds.size.width, self.bounds.size.height-self.tabbarHeight-self.tabbarBottomSpacing)];
+    slideView_ = [[TFSlideView alloc] initWithFrame:CGRectMake(0, self.tabbarHeight+self.tabbarBottomSpacing, self.bounds.size.width, self.bounds.size.height-self.tabbarHeight-self.tabbarBottomSpacing)];
     slideView_.delegate = self;
     slideView_.dataSource = self;
     [self addSubview:slideView_];
     
-    ctrlCache_ = [[DLLRUCache alloc] initWithCount:4];
+    ctrlCache_ = [[TFLRUCache alloc] initWithCount:4];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
@@ -127,15 +129,16 @@
     [tabbar_ setSelectedIndex:selectedIndex];
 }
 
-- (void)DLSlideTabbar:(id)sender selectAt:(NSInteger)index{
+//-(void)tfslid 
+- (void)TFSlideTabbar:(id)sender selectAt:(NSInteger)index{
     [slideView_ setSelectedIndex:index];
 }
 
-- (NSInteger)numberOfControllersInDLSlideView:(DLSlideView *)sender{
+-(NSInteger)numberOfControllersInDLSlideView:(TFSlideView *)sender{
     return [self.delegate numberOfTabsInTFPageSlideView:self];
 }
 
-- (UIViewController *)DLSlideView:(DLSlideView *)sender controllerAt:(NSInteger)index{
+-(UIViewController *)TFSlideView:(TFSlideView *)sender controllerAt:(NSInteger)index{
     NSString *key = [NSString stringWithFormat:@"%ld", (long)index];
     if ([ctrlCache_ objectForKey:key]) {
         return [ctrlCache_ objectForKey:key];
@@ -146,16 +149,18 @@
     }
 }
 
-- (void)DLSlideView:(DLSlideView *)slide switchingFrom:(NSInteger)oldIndex to:(NSInteger)toIndex percent:(float)percent{
+-(void)TFSlideView:(TFSlideView *)slide switchingFrom:(NSInteger)oldIndex to:(NSInteger)toIndex percent:(float)percent{
     [tabbar_ switchingFrom:oldIndex to:toIndex percent:percent];
 }
-- (void)DLSlideView:(DLSlideView *)slide didSwitchTo:(NSInteger)index{
+
+-(void)TFSlideView:(TFSlideView *)slide didSwitchTo:(NSInteger)index{
     [tabbar_ setSelectedIndex:index];
     if (self.delegate && [self.delegate respondsToSelector:@selector(TFPageSlideView:didSelectedAt:)]) {
         [self.delegate TFPageSlideView:self didSelectedAt:index];
     }
 }
-- (void)DLSlideView:(DLSlideView *)slide switchCanceled:(NSInteger)oldIndex{
+
+-(void)TFSlideView:(TFSlideView *)slide switchCanceled:(NSInteger)oldIndex{
     [tabbar_ setSelectedIndex:oldIndex];
 }
 

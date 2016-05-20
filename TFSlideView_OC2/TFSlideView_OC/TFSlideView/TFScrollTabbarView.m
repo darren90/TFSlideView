@@ -31,7 +31,7 @@
 @implementation TFScrollTabbarView
 {
     UIScrollView *scrollView_;
-    UIImageView *trackView_;
+    UIImageView *trackView_;//底下的红线
 }
 
 - (void)commonInit{
@@ -121,6 +121,45 @@
     }
 }
 
+-(void)setMutiItems:(NSArray *)mutiItems
+{
+    if (_mutiItems != mutiItems) {
+        _mutiItems = mutiItems;
+        
+        float height = self.bounds.size.height;
+        float x = 0.0f;
+        float margin = 6;
+        NSInteger i=0;
+        for (NSString *title in mutiItems) {
+            UIFont *titleFont = [UIFont systemFontOfSize:self.tabItemNormalFontSize];
+            CGFloat titleW = [title sizeWithAttributes:@{NSFontAttributeName:titleFont}].width;
+            
+            UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(x, 0, titleW, height)];
+            backView.backgroundColor = [UIColor clearColor];
+            backView.tag = kViewTagBase + i;
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleW, height)];
+            label.text = title;
+            label.font = titleFont;
+
+            label.backgroundColor = [UIColor clearColor];
+            label.textColor = self.tabItemNormalColor;
+            [label sizeToFit];
+            label.tag = kLabelTagBase+i;
+            
+            label.frame = CGRectMake((titleW - label.bounds.size.width)/2.0f, (height-label.bounds.size.height)/2.0f, CGRectGetWidth(label.bounds), CGRectGetHeight(label.bounds));
+            [backView addSubview:label];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+            [backView addGestureRecognizer:tap];
+            
+            [scrollView_ addSubview:backView];
+            x += titleW+margin;
+            i++;
+        }
+        scrollView_.contentSize = CGSizeMake(x, height);
+    }
+}
+
+
 - (void)layoutSubviews{
     [super layoutSubviews];
     
@@ -159,8 +198,7 @@
         CGRect toRc = [scrollView_ convertRect:toLabel.bounds fromView:toLabel];
         toWidth = toRc.size.width;
         toX = toRc.origin.x;
-    }
-    else{
+    }else{
         toWidth = fromWidth;
         if (toIndex > fromIndex) {
             toX = fromX + fromWidth;
