@@ -39,8 +39,6 @@
     slideView.delegate = self;
     self.slideView = slideView;
     
-    self.automaticallyAdjustsScrollViewInsets = NO;// 如果你使用了UITabBarController, 系统会自动调整scrollView的inset。加上这个如果出错的话。
-    
     // Do any additional setup after loading the view from its nib.
     TFLRUCache *cache = [[TFLRUCache alloc] initWithCount:11];
     
