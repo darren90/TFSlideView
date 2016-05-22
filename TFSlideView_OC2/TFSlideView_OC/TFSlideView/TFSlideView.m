@@ -104,7 +104,6 @@
     
     if (oldCtrl_ != nil && oldCtrl_.parentViewController == self.baseViewController) {
         isSwitching_ = YES;
-        //UIViewController *oldvc = [self.dataSource DLSlideView:self controllerAt:oldIndex_];;
         UIViewController *oldvc = oldCtrl_;
         UIViewController *newvc = [self.dataSource TFSlideView:self controllerAt:index];
         
@@ -164,12 +163,10 @@
         x = self.bounds.origin.x + self.bounds.size.width + offsetx;
     }
     
-    //UIViewController *oldvc = [self.dataSource DLSlideView:self controllerAt:oldIndex_];
     UIViewController *oldvc = oldCtrl_;
     oldvc.view.frame = CGRectMake(self.bounds.origin.x + offsetx, self.bounds.origin.y, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
     
-    if (panToIndex_ >= 0 && panToIndex_ < [self.dataSource numberOfControllersInDLSlideView:self]) {
-        //UIViewController *vc = [self.dataSource DLSlideView:self controllerAt:panToIndex_];
+    if (panToIndex_ >= 0 && panToIndex_ < [self.dataSource numberOfControllersInTFSlideView:self]) {
         UIViewController *vc = willCtrl_;
         vc.view.frame = CGRectMake(x, self.bounds.origin.y, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
     }
@@ -188,7 +185,7 @@
     [UIView animateWithDuration:animatedTime animations:^{
         [self repositionForOffsetX:0];
     } completion:^(BOOL finished) {
-        if (panToIndex_ >= 0 && panToIndex_ < [self.dataSource numberOfControllersInDLSlideView:self] && panToIndex_ != oldIndex_) {
+        if (panToIndex_ >= 0 && panToIndex_ < [self.dataSource numberOfControllersInTFSlideView:self] && panToIndex_ != oldIndex_) {
             //[self removeAt:panToIndex_];
             [oldCtrl_ beginAppearanceTransition:YES animated:NO];
             [self removeWill];
@@ -230,7 +227,7 @@
             }
         }
         
-        if (panToIndex < 0 || panToIndex >= [self.dataSource numberOfControllersInDLSlideView:self]) {
+        if (panToIndex < 0 || panToIndex >= [self.dataSource numberOfControllersInTFSlideView:self]) {
             panToIndex_ = panToIndex;
             [self repositionForOffsetX:offsetx/2.0f];
         }
@@ -249,7 +246,7 @@
     }else if (pan.state == UIGestureRecognizerStateEnded){
         float offsetx = point.x - panStartPoint_.x;
         
-        if (panToIndex_ >= 0 && panToIndex_ < [self.dataSource numberOfControllersInDLSlideView:self] && panToIndex_ != oldIndex_) {
+        if (panToIndex_ >= 0 && panToIndex_ < [self.dataSource numberOfControllersInTFSlideView:self] && panToIndex_ != oldIndex_) {
             if (fabs(offsetx) > kPanSwitchOffsetThreshold) {
                 NSTimeInterval animatedTime = 0;
                 animatedTime = fabs(self.frame.size.width - fabs(offsetx)) / self.frame.size.width * 0.4;
@@ -260,7 +257,7 @@
                     //[self removeAt:oldIndex_];
                     [self removeOld];
                     
-                    if (panToIndex_ >= 0 && panToIndex_ < [self.dataSource numberOfControllersInDLSlideView:self]) {
+                    if (panToIndex_ >= 0 && panToIndex_ < [self.dataSource numberOfControllersInTFSlideView:self]) {
                         [willCtrl_ endAppearanceTransition];
                         [willCtrl_ didMoveToParentViewController:self.baseViewController];
                         oldIndex_ = panToIndex_;

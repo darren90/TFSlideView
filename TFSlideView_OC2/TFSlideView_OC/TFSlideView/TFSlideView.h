@@ -11,12 +11,12 @@
 @class TFSlideView;
 
 @protocol TFSlideViewDataSource <NSObject>
-- (NSInteger)numberOfControllersInDLSlideView:(TFSlideView *)sender;
+- (NSInteger)numberOfControllersInTFSlideView:(TFSlideView *)sender;
 - (UIViewController *)TFSlideView:(TFSlideView *)sender controllerAt:(NSInteger)index;
 @end
 
 
-#pragma mark - DLSlideViewDelegate
+#pragma mark - TFSlideViewDelegate
 
 
 @protocol TFSlideViewDelegate <NSObject>

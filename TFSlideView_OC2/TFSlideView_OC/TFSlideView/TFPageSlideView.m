@@ -7,11 +7,8 @@
 //
 
 #import "TFPageSlideView.h"
-//#import "DLFixedTabbarView.h"
 #import "TFFixedTabbarView.h"
-//#import "DLSlideView.h"
 #import "TFSlideView.h"
-//#import "DLLRUCache.h"
 #import "TFLRUCache.h"
 
 #define kDefaultTabbarHeight 34
@@ -132,7 +129,7 @@
     [slideView_ setSelectedIndex:index];
 }
 
--(NSInteger)numberOfControllersInDLSlideView:(TFSlideView *)sender{
+-(NSInteger)numberOfControllersInTFSlideView:(TFSlideView *)sender{
     return [self.delegate numberOfTabsInTFPageSlideView:self];
 }
 

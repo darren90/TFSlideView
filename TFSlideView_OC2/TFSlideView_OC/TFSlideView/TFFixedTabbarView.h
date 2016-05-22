@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "DLSlideTabbarProtocol.h"
 #import "TFScrollTabbarView.h"
 
 #pragma mark - TFFixedTabbarViewTabItem

@@ -72,13 +72,12 @@
     [self.tabbar setSelectedIndex:selectedIndex];
 }
 
-//- (void)DLSlideTabbar:(id)sender selectAt:(NSInteger)index
 -(void)TFSlideTabbar:(id)sender selectAt:(NSInteger)index{
     [slideView_ setSelectedIndex:index];
 }
 
 
--(NSInteger)numberOfControllersInDLSlideView:(TFSlideView *)sender{
+-(NSInteger)numberOfControllersInTFSlideView:(TFSlideView *)sender{
     return [self.delegate numberOfTabsInTFMultiSlideView:self];
 }
 

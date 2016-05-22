@@ -43,7 +43,6 @@
 @property(nonatomic, strong) NSArray *tabbarItems;
 @property(nonatomic, strong) NSArray *mutiItems;//item数据
 
-// DLSlideTabbarProtocol
 @property(nonatomic, assign) NSInteger selectedIndex;
 @property(nonatomic, readonly) NSInteger tabbarCount;
 @property(nonatomic, weak) id<TFSlideTabbarDelegate> delegate;

@@ -12,11 +12,6 @@
 #import "TFPageSlideView.h"
 #import "TFLRUCache.h"
 
-//#import "DLSlideTabbarProtocol.h"
-//#import "DLSlideView.h"
-//#import "DLTabedSlideView.h"
-//#import "DLCacheProtocol.h"
-
 @class TFMultiSlideView;
 @protocol TFMultiSlideViewDelegate <NSObject>
 - (NSInteger)numberOfTabsInTFMultiSlideView:(TFMultiSlideView *)sender;

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "DLSlideTabbarProtocol.h"
 #import "TFScrollTabbarView.h"
 
 #pragma mark - TFTabedbarItem
@@ -60,10 +59,7 @@
 @property(nonatomic, assign) NSInteger cacheCount;
 
 - (void)buildTabbar;
-
-//@property(nonatomic, strong) IBOutlet id<DLSlideTabbarProtocol> tabarView;
-
-
+ 
 @property(nonatomic, weak)IBOutlet id<TFPageSlideViewDelegate>delegate;
 
 
