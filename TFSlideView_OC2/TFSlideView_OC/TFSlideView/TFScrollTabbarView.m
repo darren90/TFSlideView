@@ -41,9 +41,14 @@
     scrollView_.showsHorizontalScrollIndicator = NO;
     [self addSubview:scrollView_];
     
-    trackView_ = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height-kTrackViewHeight-1, self.bounds.size.width, kTrackViewHeight)];
+//    trackView_ = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height-kTrackViewHeight-1, self.bounds.size.width, kTrackViewHeight)];
+    CGFloat trackViewH = 26;
+    trackView_ = [[UIImageView alloc] initWithFrame:CGRectMake(0, 3, self.bounds.size.width, trackViewH)];
+
     [scrollView_ addSubview:trackView_];
-    trackView_.layer.cornerRadius = 2.0f;
+//    trackView_.layer.cornerRadius = 2.0f;
+    trackView_.alpha = 0.6;
+    trackView_.layer.cornerRadius = (trackViewH - 5) / 2;
 }
 
 

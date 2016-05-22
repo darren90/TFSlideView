@@ -15,7 +15,7 @@
 #import "TFPageSlideView.h"
 
 @interface DLDemoViewController ()<TFPageSlideViewDelegate>
-@property (weak, nonatomic) TFPageSlideView *tabedSlideView;
+@property (weak, nonatomic) TFPageSlideView *pageSlideView;
 
 @end
 
@@ -28,35 +28,28 @@
     [self initSlideView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
-}
-
-
 -(void)initSlideView
 {
-    TFPageSlideView *tabedSlideView = [[TFPageSlideView alloc]init];
-    [self.view addSubview:tabedSlideView];
-    tabedSlideView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
-    self.tabedSlideView = tabedSlideView;
-    self.tabedSlideView.baseViewController = self;
-    self.tabedSlideView.delegate = self;
-    self.tabedSlideView.tabItemNormalColor = MJColor(68, 68, 68);
-    self.tabedSlideView.tabItemSelectedColor = MJColor(52, 174, 255);
-    self.tabedSlideView.tabbarTrackColor = MJColor(52, 174, 255);
-    self.tabedSlideView.titleFont = [UIFont systemFontOfSize:17];
-    self.tabedSlideView.tabbarBottomSpacing = 0.0;
+    TFPageSlideView *pageSlideView = [[TFPageSlideView alloc]init];
+    [self.view addSubview:pageSlideView];
+    pageSlideView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
+    self.pageSlideView = pageSlideView;
+    self.pageSlideView.baseViewController = self;
+    self.pageSlideView.delegate = self;
+    self.pageSlideView.tabItemNormalColor = MJColor(68, 68, 68);
+    self.pageSlideView.tabItemSelectedColor = MJColor(52, 174, 255);
+    self.pageSlideView.tabbarTrackColor = MJColor(52, 174, 255);
+    self.pageSlideView.titleFont = [UIFont systemFontOfSize:17];
+    self.pageSlideView.tabbarBottomSpacing = 0.0;
     
     TFTabedbarItem *item1 = [TFTabedbarItem itemWithTitle:@"综合"];
     TFTabedbarItem *item2 = [TFTabedbarItem itemWithTitle:@"美剧"];
     TFTabedbarItem *item3 = [TFTabedbarItem itemWithTitle:@"视频"];
     TFTabedbarItem *item4 = [TFTabedbarItem itemWithTitle:@"UP主"];
-    self.tabedSlideView.tabbarItems = @[item1, item2, item3,item4];
-    [self.tabedSlideView buildTabbar];
+    self.pageSlideView.tabbarItems = @[item1, item2, item3,item4];
+    [self.pageSlideView buildTabbar];
     
-    self.tabedSlideView.selectedIndex = 0;
+    self.pageSlideView.selectedIndex = 0;
 }
 
 -(NSInteger)numberOfTabsInTFPageSlideView:(TFPageSlideView *)sender{
