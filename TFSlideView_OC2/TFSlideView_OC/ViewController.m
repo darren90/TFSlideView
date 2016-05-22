@@ -26,7 +26,6 @@
 }
 
 
-
 -(void)initSlideView
 {
     TFPageSlideView *tabedSlideView = [[TFPageSlideView alloc]init];

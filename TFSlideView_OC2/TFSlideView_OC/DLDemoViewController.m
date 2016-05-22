@@ -26,7 +26,6 @@
     // Do any additional setup after loading the view.
     
     [self initSlideView];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,20 +57,7 @@
     [self.tabedSlideView buildTabbar];
     
     self.tabedSlideView.selectedIndex = 0;
-    //    tabedSlideView.backgroundColor = [UIColor blueColor];
-    
-    //    [self addLaebl];
 }
-
-//-(void)addLaebl{
-//    for (UIView *view  in self.tabedSlideView.slideView_) {
-//        NSLog(@"%@",view);
-//        if ([view isKindOfClass:[UILabel class]]) {
-//            UILabel *label = (UILabel *)view;
-//            NSLog(@"%@",label.text);
-//        }
-//    }
-//}
 
 -(NSInteger)numberOfTabsInTFPageSlideView:(TFPageSlideView *)sender{
     return 4;
