@@ -11,14 +11,9 @@
 
 #import "TFDemo2ViewController.h"
 #import "PageNViewController.h"
-
 #import "TFMultiSlideView.h"
 #import "TFSlideView.h"
 #import "TFLRUCache.h"
-//#import "DLCustomSlideView.h"
-//#import "DLScrollTabbarView.h"
-//#import "DLLRUCache.h"
-
 
 #define KRandomColor     [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0];
 
@@ -62,13 +57,13 @@
         item = [TFScrollTabbarItem itemWithTitle:[NSString stringWithFormat:@"页面%d", i+1] width:60];
         [itemArray_ addObject:item];
     }
-//    tabbar.tabbarItems = itemArray_;
+    tabbar.tabbarItems = itemArray_;
     
-    itemArray_ = [NSMutableArray array];
-    for (int i = 0;i<10;i++) {
-        [itemArray_ addObject:[NSString stringWithFormat:@"页面%d", i+1]];
-    }
-    tabbar.mutiItems = itemArray_;
+//    itemArray_ = [NSMutableArray array];
+//    for (int i = 0;i<10;i++) {
+//        [itemArray_ addObject:[NSString stringWithFormat:@"页面%d", i+1]];
+//    }
+//    tabbar.mutiItems = itemArray_;
     
     self.slideView.tabbar = tabbar;
     self.slideView.cache = cache;

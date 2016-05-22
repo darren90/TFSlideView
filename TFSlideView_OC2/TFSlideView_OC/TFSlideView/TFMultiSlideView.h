@@ -32,7 +32,7 @@
 @property(nonatomic, assign) float tabbarBottomSpacing;
 
 // cache properties
-@property(nonatomic, strong) id<TFLRUCacheProtocol> cache;
+@property(nonatomic, strong) id<TFCacheProtocol> cache;
 
 // delegate
 @property(nonatomic, weak)IBOutlet id<TFMultiSlideViewDelegate>delegate;

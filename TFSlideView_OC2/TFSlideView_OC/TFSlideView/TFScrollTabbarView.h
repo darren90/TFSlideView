@@ -8,22 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TFScrollTabbarItem :NSObject
-
-@property(nonatomic, strong) NSString *title;
-@property(nonatomic, assign) CGFloat width;
-+ (TFScrollTabbarItem *)itemWithTitle:(NSString *)title width:(CGFloat)width;
-@end
-
 #pragma mark - TFSlideTabbarDelegate
-
 @protocol TFSlideTabbarDelegate <NSObject>
 - (void)TFSlideTabbar:(id)sender selectAt:(NSInteger)index;
 @end
 
 
 #pragma mark - TFSlideTabbarProtocol
-
 @protocol TFSlideTabbarProtocol <NSObject>
 @property(nonatomic, assign) NSInteger selectedIndex;
 @property(nonatomic, readonly) NSInteger tabbarCount;
@@ -31,6 +22,15 @@
 - (void)switchingFrom:(NSInteger)fromIndex to:(NSInteger)toIndex percent:(float)percent;
 @end
 
+
+@interface TFScrollTabbarItem :NSObject
+
+@property(nonatomic, strong) NSString *title;
+@property(nonatomic, assign) CGFloat width;
++ (TFScrollTabbarItem *)itemWithTitle:(NSString *)title width:(CGFloat)width;
+@end
+
+#pragma mark - TFScrollTabbarView
 
 @interface TFScrollTabbarView : UIView
 @property(nonatomic, strong) UIView *backgroundView;
@@ -49,3 +49,6 @@
 - (void)switchingFrom:(NSInteger)fromIndex to:(NSInteger)toIndex percent:(float)percent;
 
 @end
+
+
+
