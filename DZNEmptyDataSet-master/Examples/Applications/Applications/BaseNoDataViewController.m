@@ -11,6 +11,8 @@
 
 #import "UIScrollView+EmptyDataSet.h"
 
+#import "MJRefresh/MJRefresh.h"
+
 @interface BaseNoDataViewController ()<DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) Application *application;
 @property (nonatomic, getter=isLoading) BOOL loading;
@@ -54,6 +56,15 @@
     self.tableView.emptyDataSetDelegate = self;
 
     [self configureHeaderAndFooter];
+
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerAction)];
+//    [self.tableView.mj_header beginRefreshing];
+    
+}
+
+-(void)headerAction{
+//    NSLog(@"-----");
+    [self reTryeAction];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -167,7 +178,9 @@
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
 {
-//    if
+    if (self.isLoading) {
+        return nil;
+    }
     NSString *text = nil;
     UIFont *font = nil;
     UIColor *textColor = nil;
@@ -178,7 +191,7 @@
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
     paragraph.alignment = NSTextAlignmentCenter;
 
-    text = @"网络不给力";
+    text = @"网络不好，请稍后重试";
     font = [UIFont systemFontOfSize:14.5];
     textColor = [UIColor colorWithHex:@"7b8994"];
 
@@ -204,9 +217,11 @@
         NSString *imageName = [[[NSString stringWithFormat:@"placeholder_%@", self.application.displayName] lowercaseString]
                                stringByReplacingOccurrencesOfString:@" " withString:@"_"];
         imageName = @"no-wifi"; //no-wifi
+        imageName = @"placeholder_dropbox";
         return [UIImage imageNamed:imageName];
     }
 }
+
 
 - (CAAnimation *)imageAnimationForEmptyDataSet:(UIScrollView *)scrollView
 {
@@ -222,11 +237,14 @@
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
 {
+    if (self.isLoading) {
+        return nil;
+    }
     NSString *text = nil;
     UIFont *font = nil;
     UIColor *textColor = nil;
 
-    text = @"点击重试";
+    text = @"重新加载";
     font = [UIFont systemFontOfSize:15.0];
     textColor = [UIColor colorWithHex:(state == UIControlStateNormal) ? @"007ee5" : @"48a1ea"];
 
@@ -260,14 +278,16 @@
     return [UIColor whiteColor];
 }
 
+//-(CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView
+
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView
 {
-    return 0.0;
+    return -70.0;
 }
 
 - (CGFloat)spaceHeightForEmptyDataSet:(UIScrollView *)scrollView
 {
-    return 0.0;
+    return 10.0;
 }
 
 
@@ -286,6 +306,10 @@
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
 {
     return YES;
+}
+
+- (BOOL)emptyDataSetShouldFadeIn:(UIScrollView *)scrollView{
+    return  YES;
 }
 
 //loading - 转圈的是否继续转圈
@@ -310,9 +334,10 @@
 
 -(void)reTryeAction{
     self.loading = YES;
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    self.emptyDataSetVisible = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.loading = NO;
+        [self.tableView.mj_header endRefreshing];
     });
 }
 
