@@ -139,7 +139,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -233,6 +233,7 @@
     animation.duration = 0.25;
     animation.cumulative = YES;
     animation.repeatCount = MAXFLOAT;
+//    animation 
 
     return animation;
 }
@@ -273,6 +274,10 @@
 //    UIEdgeInsets rectInsets = UIEdgeInsetsZero;
 //
 //    return [[[UIImage imageNamed:imageName] resizableImageWithCapInsets:capInsets resizingMode:UIImageResizingModeStretch] imageWithAlignmentRectInsets:rectInsets];
+//}
+
+//-(UIColor *)imageTintColorForEmptyDataSet:(UIScrollView *)scrollView{
+//    return [UIColor redColor];//[UIColor colorWithHex:@"007ee5"];
 //}
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
@@ -337,7 +342,7 @@
 -(void)reTryeAction{
     self.loading = YES;
 //    self.emptyDataSetVisible = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(200 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.loading = NO;
         [self.tableView.mj_header endRefreshing];
     });
