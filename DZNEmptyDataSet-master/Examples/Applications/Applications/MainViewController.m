@@ -12,6 +12,7 @@
 
 #import "UIScrollView+EmptyDataSet.h"
 #import "HomeViewController.h"
+#import "ListViewController.h"
 
 @interface MainViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) NSMutableArray *applications;
@@ -51,7 +52,8 @@
 }
 
 -(void)loading{
-    HomeViewController *vc = [[HomeViewController alloc]init];
+//    HomeViewController *vc = [[HomeViewController alloc]init];
+    ListViewController *vc = [[ListViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

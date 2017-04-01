@@ -8,6 +8,6 @@
 
 #import "BaseNoDataViewController.h"
 
-@interface ListViewController : BaseNoDataViewController
+@interface ListViewController : UITableViewController
 
 @end

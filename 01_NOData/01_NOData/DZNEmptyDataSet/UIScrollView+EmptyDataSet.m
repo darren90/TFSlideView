@@ -86,17 +86,17 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 - (DZNEmptyDataSetView *)emptyDataSetView
 {
     DZNEmptyDataSetView *view = objc_getAssociatedObject(self, kEmptyDataSetView);
-    
+
     if (!view)
     {
         view = [DZNEmptyDataSetView new];
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         view.hidden = YES;
-        
+
         view.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dzn_didTapContentView:)];
         view.tapGesture.delegate = self;
         [view addGestureRecognizer:view.tapGesture];
-        
+
         [self setEmptyDataSetView:view];
     }
     return view;
@@ -109,31 +109,31 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
             return YES;
         }
     }
-    
+
     return NO;
 }
 
 - (NSInteger)dzn_itemsCount
 {
     NSInteger items = 0;
-    
+
     // UIScollView doesn't respond to 'dataSource' so let's exit
     if (![self respondsToSelector:@selector(dataSource)]) {
         return items;
     }
-    
+
     // UITableView support
     if ([self isKindOfClass:[UITableView class]]) {
-        
+
         UITableView *tableView = (UITableView *)self;
         id <UITableViewDataSource> dataSource = tableView.dataSource;
-        
+
         NSInteger sections = 1;
-        
+
         if (dataSource && [dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
             sections = [dataSource numberOfSectionsInTableView:tableView];
         }
-        
+
         if (dataSource && [dataSource respondsToSelector:@selector(tableView:numberOfRowsInSection:)]) {
             for (NSInteger section = 0; section < sections; section++) {
                 items += [dataSource tableView:tableView numberOfRowsInSection:section];
@@ -142,23 +142,23 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     }
     // UICollectionView support
     else if ([self isKindOfClass:[UICollectionView class]]) {
-        
+
         UICollectionView *collectionView = (UICollectionView *)self;
         id <UICollectionViewDataSource> dataSource = collectionView.dataSource;
 
         NSInteger sections = 1;
-        
+
         if (dataSource && [dataSource respondsToSelector:@selector(numberOfSectionsInCollectionView:)]) {
             sections = [dataSource numberOfSectionsInCollectionView:collectionView];
         }
-        
+
         if (dataSource && [dataSource respondsToSelector:@selector(collectionView:numberOfItemsInSection:)]) {
             for (NSInteger section = 0; section < sections; section++) {
                 items += [dataSource collectionView:collectionView numberOfItemsInSection:section];
             }
         }
     }
-    
+
     return items;
 }
 
@@ -268,7 +268,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 - (CGFloat)dzn_verticalOffset
 {
     CGFloat offset = 0.0;
-    
+
     if (self.emptyDataSetSource && [self.emptyDataSetSource respondsToSelector:@selector(verticalOffsetForEmptyDataSet:)]) {
         offset = [self.emptyDataSetSource verticalOffsetForEmptyDataSet:self];
     }
@@ -395,12 +395,12 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     if (!datasource || ![self dzn_canDisplay]) {
         [self dzn_invalidate];
     }
-    
+
     objc_setAssociatedObject(self, kEmptyDataSetSource, [[DZNWeakObjectContainer alloc] initWithWeakObject:datasource], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+
     // We add method sizzling for injecting -dzn_reloadData implementation to the native -reloadData implementation
     [self swizzleIfPossible:@selector(reloadData)];
-    
+
     // Exclusively for UITableView, we also inject -dzn_reloadData to -endUpdates
     if ([self isKindOfClass:[UITableView class]]) {
         [self swizzleIfPossible:@selector(endUpdates)];
@@ -412,7 +412,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     if (!delegate) {
         [self dzn_invalidate];
     }
-    
+
     objc_setAssociatedObject(self, kEmptyDataSetDelegate, [[DZNWeakObjectContainer alloc] initWithWeakObject:delegate], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -440,14 +440,14 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
     if (![self dzn_canDisplay]) {
         return;
     }
-    
+
     if (([self dzn_shouldDisplay] && [self dzn_itemsCount] == 0) || [self dzn_shouldBeForcedToDisplay])
     {
         // Notifies that the empty dataset view will appear
         [self dzn_willAppear];
-        
+
         DZNEmptyDataSetView *view = self.emptyDataSetView;
-        
+
         if (!view.superview) {
             // Send the view all the way to the back, in case a header and/or footer is present, as well as for sectionHeaders or any other content
             if (([self isKindOfClass:[UITableView class]] || [self isKindOfClass:[UICollectionView class]]) && self.subviews.count > 1) {
@@ -457,12 +457,12 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
                 [self addSubview:view];
             }
         }
-        
+
         // Removing view resetting the view and its constraints it very important to guarantee a good state
         [view prepareForReuse];
-        
+
         UIView *customView = [self dzn_customView];
-        
+
         // If a non-nil custom view is available, let's configure it instead
         if (customView) {
             view.customView = customView;
@@ -471,16 +471,16 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
             // Get the data from the data source
             NSAttributedString *titleLabelString = [self dzn_titleLabelString];
             NSAttributedString *detailLabelString = [self dzn_detailLabelString];
-            
+
             UIImage *buttonImage = [self dzn_buttonImageForState:UIControlStateNormal];
             NSAttributedString *buttonTitle = [self dzn_buttonTitleForState:UIControlStateNormal];
-            
+
             UIImage *image = [self dzn_image];
             UIColor *imageTintColor = [self dzn_imageTintColor];
             UIImageRenderingMode renderingMode = imageTintColor ? UIImageRenderingModeAlwaysTemplate : UIImageRenderingModeAlwaysOriginal;
-            
+
             view.verticalSpace = [self dzn_verticalSpace];
-            
+
             // Configure Image
             if (image) {
                 if ([image respondsToSelector:@selector(imageWithRenderingMode:)]) {
@@ -492,17 +492,17 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
                     view.imageView.image = image;
                 }
             }
-            
+
             // Configure title label
             if (titleLabelString) {
                 view.titleLabel.attributedText = titleLabelString;
             }
-            
+
             // Configure detail label
             if (detailLabelString) {
                 view.detailLabel.attributedText = detailLabelString;
             }
-            
+
             // Configure button
             if (buttonImage) {
                 [view.button setImage:buttonImage forState:UIControlStateNormal];
@@ -515,35 +515,35 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
                 [view.button setBackgroundImage:[self dzn_buttonBackgroundImageForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
             }
         }
-        
+
         // Configure offset
         view.verticalOffset = [self dzn_verticalOffset];
-        
+
         // Configure the empty dataset view
         view.backgroundColor = [self dzn_dataSetBackgroundColor];
         view.hidden = NO;
         view.clipsToBounds = YES;
-        
+
         // Configure empty dataset userInteraction permission
         view.userInteractionEnabled = [self dzn_isTouchAllowed];
-        
+
         // Configure empty dataset fade in display
         view.fadeInOnDisplay = [self dzn_shouldFadeIn];
-        
+
         [view setupConstraints];
-        
+
         [UIView performWithoutAnimation:^{
             [view layoutIfNeeded];
         }];
-        
+
         // Configure scroll permission
         self.scrollEnabled = [self dzn_isScrollAllowed];
-        
+
         // Configure image view animation
         if ([self dzn_isImageViewAnimateAllowed])
         {
             CAAnimation *animation = [self dzn_imageAnimation];
-            
+
             if (animation) {
                 [self.emptyDataSetView.imageView.layer addAnimation:animation forKey:kEmptyImageViewAnimationKey];
             }
@@ -551,7 +551,7 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         else if ([self.emptyDataSetView.imageView.layer animationForKey:kEmptyImageViewAnimationKey]) {
             [self.emptyDataSetView.imageView.layer removeAnimationForKey:kEmptyImageViewAnimationKey];
         }
-        
+
         // Notifies that the empty dataset view did appear
         [self dzn_didAppear];
     }
@@ -564,16 +564,16 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
 {
     // Notifies that the empty dataset view will disappear
     [self dzn_willDisappear];
-    
+
     if (self.emptyDataSetView) {
         [self.emptyDataSetView prepareForReuse];
         [self.emptyDataSetView removeFromSuperview];
-        
+
         [self setEmptyDataSetView:nil];
     }
-    
+
     self.scrollEnabled = YES;
-    
+
     // Notifies that the empty dataset view did disappear
     [self dzn_didDisappear];
 }
@@ -594,16 +594,16 @@ void dzn_original_implementation(id self, SEL _cmd)
     // Fetch original implementation from lookup table
     Class baseClass = dzn_baseClassToSwizzleForTarget(self);
     NSString *key = dzn_implementationKey(baseClass, _cmd);
-    
+
     NSDictionary *swizzleInfo = [_impLookupTable objectForKey:key];
     NSValue *impValue = [swizzleInfo valueForKey:DZNSwizzleInfoPointerKey];
-    
+
     IMP impPointer = [impValue pointerValue];
-    
+
     // We then inject the additional implementation for reloading the empty dataset
     // Doing it before calling the original implementation does update the 'isEmptyDataSetVisible' flag on time.
     [self dzn_reloadEmptyDataSet];
-    
+
     // If found, call original implementation
     if (impPointer) {
         ((void(*)(id,SEL))impPointer)(self,_cmd);
@@ -615,9 +615,9 @@ NSString *dzn_implementationKey(Class class, SEL selector)
     if (!class || !selector) {
         return nil;
     }
-    
+
     NSString *className = NSStringFromClass([class class]);
-    
+
     NSString *selectorName = NSStringFromSelector(selector);
     return [NSString stringWithFormat:@"%@_%@",className,selectorName];
 }
@@ -633,7 +633,7 @@ Class dzn_baseClassToSwizzleForTarget(id target)
     else if ([target isKindOfClass:[UIScrollView class]]) {
         return [UIScrollView class];
     }
-    
+
     return nil;
 }
 
@@ -643,42 +643,42 @@ Class dzn_baseClassToSwizzleForTarget(id target)
     if (![self respondsToSelector:selector]) {
         return;
     }
-    
+
     // Create the lookup table
     if (!_impLookupTable) {
         _impLookupTable = [[NSMutableDictionary alloc] initWithCapacity:3]; // 3 represent the supported base classes
     }
-    
+
     // We make sure that setImplementation is called once per class kind, UITableView or UICollectionView.
     for (NSDictionary *info in [_impLookupTable allValues]) {
         Class class = [info objectForKey:DZNSwizzleInfoOwnerKey];
         NSString *selectorName = [info objectForKey:DZNSwizzleInfoSelectorKey];
-        
+
         if ([selectorName isEqualToString:NSStringFromSelector(selector)]) {
             if ([self isKindOfClass:class]) {
                 return;
             }
         }
     }
-    
+
     Class baseClass = dzn_baseClassToSwizzleForTarget(self);
     NSString *key = dzn_implementationKey(baseClass, selector);
     NSValue *impValue = [[_impLookupTable objectForKey:key] valueForKey:DZNSwizzleInfoPointerKey];
-    
+
     // If the implementation for this class already exist, skip!!
     if (impValue || !key || !baseClass) {
         return;
     }
-    
+
     // Swizzle by injecting additional implementation
     Method method = class_getInstanceMethod(baseClass, selector);
     IMP dzn_newImplementation = method_setImplementation(method, (IMP)dzn_original_implementation);
-    
+
     // Store the new implementation in the lookup table
     NSDictionary *swizzledInfo = @{DZNSwizzleInfoOwnerKey: baseClass,
                                    DZNSwizzleInfoSelectorKey: NSStringFromSelector(selector),
                                    DZNSwizzleInfoPointerKey: [NSValue valueWithPointer:dzn_newImplementation]};
-    
+
     [_impLookupTable setObject:swizzledInfo forKey:key];
 }
 
@@ -690,23 +690,23 @@ Class dzn_baseClassToSwizzleForTarget(id target)
     if ([gestureRecognizer.view isEqual:self.emptyDataSetView]) {
         return [self dzn_isTouchAllowed];
     }
-    
+
     return [super gestureRecognizerShouldBegin:gestureRecognizer];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     UIGestureRecognizer *tapGesture = self.emptyDataSetView.tapGesture;
-    
+
     if ([gestureRecognizer isEqual:tapGesture] || [otherGestureRecognizer isEqual:tapGesture]) {
         return YES;
     }
-    
+
     // defer to emptyDataSetDelegate's implementation if available
     if ( (self.emptyDataSetDelegate != (id)self) && [self.emptyDataSetDelegate respondsToSelector:@selector(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)]) {
         return [(id)self.emptyDataSetDelegate gestureRecognizer:gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:otherGestureRecognizer];
     }
-    
+
     return NO;
 }
 
@@ -737,9 +737,9 @@ Class dzn_baseClassToSwizzleForTarget(id target)
 {
     CGRect superviewBounds = self.superview.bounds;
     self.frame = CGRectMake(0, 0, CGRectGetWidth(superviewBounds), CGRectGetHeight(superviewBounds));
-    
+
     void(^fadeInBlock)(void) = ^{_contentView.alpha = 1.0;};
-    
+
     if (self.fadeInOnDisplay) {
         [UIView animateWithDuration:0.25
                          animations:fadeInBlock
@@ -775,7 +775,7 @@ Class dzn_baseClassToSwizzleForTarget(id target)
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
         _imageView.userInteractionEnabled = NO;
         _imageView.accessibilityIdentifier = @"empty set background image";
-        
+
         [_contentView addSubview:_imageView];
     }
     return _imageView;
@@ -788,14 +788,14 @@ Class dzn_baseClassToSwizzleForTarget(id target)
         _titleLabel = [UILabel new];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.backgroundColor = [UIColor clearColor];
-        
+
         _titleLabel.font = [UIFont systemFontOfSize:27.0];
         _titleLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         _titleLabel.numberOfLines = 0;
         _titleLabel.accessibilityIdentifier = @"empty set title";
-        
+
         [_contentView addSubview:_titleLabel];
     }
     return _titleLabel;
@@ -808,14 +808,14 @@ Class dzn_baseClassToSwizzleForTarget(id target)
         _detailLabel = [UILabel new];
         _detailLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _detailLabel.backgroundColor = [UIColor clearColor];
-        
+
         _detailLabel.font = [UIFont systemFontOfSize:17.0];
         _detailLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
         _detailLabel.textAlignment = NSTextAlignmentCenter;
         _detailLabel.lineBreakMode = NSLineBreakByWordWrapping;
         _detailLabel.numberOfLines = 0;
         _detailLabel.accessibilityIdentifier = @"empty set detail label";
-        
+
         [_contentView addSubview:_detailLabel];
     }
     return _detailLabel;
@@ -831,9 +831,9 @@ Class dzn_baseClassToSwizzleForTarget(id target)
         _button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         _button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         _button.accessibilityIdentifier = @"empty set button";
-        
+
         [_button addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
-        
+
         [_contentView addSubview:_button];
     }
     return _button;
@@ -870,12 +870,12 @@ Class dzn_baseClassToSwizzleForTarget(id target)
     if (!view) {
         return;
     }
-    
+
     if (_customView) {
         [_customView removeFromSuperview];
         _customView = nil;
     }
-    
+
     _customView = view;
     _customView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:_customView];
@@ -887,7 +887,7 @@ Class dzn_baseClassToSwizzleForTarget(id target)
 - (void)didTapButton:(id)sender
 {
     SEL selector = NSSelectorFromString(@"dzn_didTapDataButton:");
-    
+
     if ([self.superview respondsToSelector:selector]) {
         [self.superview performSelector:selector withObject:sender afterDelay:0.0f];
     }
@@ -902,13 +902,13 @@ Class dzn_baseClassToSwizzleForTarget(id target)
 - (void)prepareForReuse
 {
     [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
+
     _titleLabel = nil;
     _detailLabel = nil;
     _imageView = nil;
     _button = nil;
     _customView = nil;
-    
+
     [self removeAllConstraints];
 }
 
@@ -921,16 +921,16 @@ Class dzn_baseClassToSwizzleForTarget(id target)
     // The content view must alway be centered to its superview
     NSLayoutConstraint *centerXConstraint = [self equallyRelatedConstraintWithView:self.contentView attribute:NSLayoutAttributeCenterX];
     NSLayoutConstraint *centerYConstraint = [self equallyRelatedConstraintWithView:self.contentView attribute:NSLayoutAttributeCenterY];
-    
+
     [self addConstraint:centerXConstraint];
     [self addConstraint:centerYConstraint];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
-    
+
     // When a custom offset is available, we adjust the vertical constraints' constants
     if (self.verticalOffset != 0 && self.constraints.count > 0) {
         centerYConstraint.constant = self.verticalOffset;
     }
-    
+
     // If applicable, set the custom view's constraints
     if (_customView) {
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[customView]|" options:0 metrics:nil views:@{@"customView":_customView}]];
@@ -940,26 +940,26 @@ Class dzn_baseClassToSwizzleForTarget(id target)
         CGFloat width = CGRectGetWidth(self.frame) ? : CGRectGetWidth([UIScreen mainScreen].bounds);
         CGFloat padding = roundf(width/16.0);
         CGFloat verticalSpace = self.verticalSpace ? : 11.0; // Default is 11 pts
-        
+
         NSMutableArray *subviewStrings = [NSMutableArray array];
         NSMutableDictionary *views = [NSMutableDictionary dictionary];
         NSDictionary *metrics = @{@"padding": @(padding)};
-        
+
         // Assign the image view's horizontal constraints
         if (_imageView.superview) {
-            
+
             [subviewStrings addObject:@"imageView"];
             views[[subviewStrings lastObject]] = _imageView;
-            
+
             [self.contentView addConstraint:[self.contentView equallyRelatedConstraintWithView:_imageView attribute:NSLayoutAttributeCenterX]];
         }
-        
+
         // Assign the title label's horizontal constraints
         if ([self canShowTitle]) {
-            
+
             [subviewStrings addObject:@"titleLabel"];
             views[[subviewStrings lastObject]] = _titleLabel;
-            
+
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[titleLabel(>=0)]-(padding@750)-|"
                                                                                      options:0 metrics:metrics views:views]];
         }
@@ -968,13 +968,13 @@ Class dzn_baseClassToSwizzleForTarget(id target)
             [_titleLabel removeFromSuperview];
             _titleLabel = nil;
         }
-        
+
         // Assign the detail label's horizontal constraints
         if ([self canShowDetail]) {
-            
+
             [subviewStrings addObject:@"detailLabel"];
             views[[subviewStrings lastObject]] = _detailLabel;
-            
+
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[detailLabel(>=0)]-(padding@750)-|"
                                                                                      options:0 metrics:metrics views:views]];
         }
@@ -983,13 +983,13 @@ Class dzn_baseClassToSwizzleForTarget(id target)
             [_detailLabel removeFromSuperview];
             _detailLabel = nil;
         }
-        
+
         // Assign the button's horizontal constraints
         if ([self canShowButton]) {
-            
+
             [subviewStrings addObject:@"button"];
             views[[subviewStrings lastObject]] = _button;
-            
+
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[button(>=0)]-(padding@750)-|"
                                                                                      options:0 metrics:metrics views:views]];
         }
@@ -998,21 +998,21 @@ Class dzn_baseClassToSwizzleForTarget(id target)
             [_button removeFromSuperview];
             _button = nil;
         }
-        
-        
+
+
         NSMutableString *verticalFormat = [NSMutableString new];
-        
+
         // Build a dynamic string format for the vertical constraints, adding a margin between each element. Default is 11 pts.
         for (int i = 0; i < subviewStrings.count; i++) {
-            
+
             NSString *string = subviewStrings[i];
             [verticalFormat appendFormat:@"[%@]", string];
-            
+
             if (i < subviewStrings.count-1) {
                 [verticalFormat appendFormat:@"-(%.f@750)-", verticalSpace];
             }
         }
-        
+
         // Assign the vertical constraints to the content view
         if (verticalFormat.length > 0) {
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|%@|", verticalFormat]
@@ -1024,17 +1024,17 @@ Class dzn_baseClassToSwizzleForTarget(id target)
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
     UIView *hitView = [super hitTest:point withEvent:event];
-    
+
     // Return any UIControl instance such as buttons, segmented controls, switches, etc.
     if ([hitView isKindOfClass:[UIControl class]]) {
         return hitView;
     }
-    
+
     // Return either the contentView or customView
     if ([hitView isEqual:_contentView] || [hitView isEqual:_customView]) {
         return hitView;
     }
-    
+
     return nil;
 }
 

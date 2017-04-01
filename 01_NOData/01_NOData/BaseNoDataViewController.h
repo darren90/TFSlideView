@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Application.h"
 
 @interface BaseNoDataViewController : UITableViewController
 
-//- (instancetype)initWithApplication:(Application *)app;
+@property (nonatomic,assign)int page;
+
+@property (nonatomic, assign) BOOL loading;
+
+-(void)reTryeAction;
 
 @end

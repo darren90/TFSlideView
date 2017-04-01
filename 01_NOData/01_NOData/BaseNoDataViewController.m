@@ -14,32 +14,16 @@
 #import "MJRefresh/MJRefresh.h"
 
 @interface BaseNoDataViewController ()<DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
-@property (nonatomic, strong) Application *application;
-@property (nonatomic, getter=isLoading) BOOL loading;
+
+
+//@property (nonatomic, assign,getter = isLoading) BOOL loading;
 @end
 
 @implementation BaseNoDataViewController
 
-//- (instancetype)initWithApplication:(Application *)application
-//{
-//    self = [super initWithStyle:UITableViewStylePlain];
-//    if (self) {
-//        self.application = application;
-//        self.title = application.displayName;
-//    }
-//    return self;
-//}
-
 -(instancetype)init{
     if (self = [super init]) {
-        Application *app = [[Application alloc]init];
-        app.displayName = @"Airbnb";
-        app.developerName = @"Airbnb, Inc.";
-        app.identifier = @"401626263";
-        app.iconName = @"icon_airbnb";
-        app.type = ApplicationTypeAirbnb;
-        self.title = app.displayName;
-        self.application = app;
+
     }
     return self;
 }
@@ -50,6 +34,7 @@
 {
     [super viewDidLoad];
 
+    self.page = 1;
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     self.tableView.emptyDataSetSource = self;
@@ -61,7 +46,7 @@
 //    [self.tableView.mj_header beginRefreshing];
 
 
-    [self reTryeAction];
+//    [self reTryeAction];
 }
 
 -(void)headerAction{
@@ -90,15 +75,6 @@
     barColor = [UIColor whiteColor];
     tintColor = [UIColor colorWithHex:@"007ee5"];
 
-    UIImage *logo = [UIImage imageNamed:[NSString stringWithFormat:@"logo_%@", [self.application.displayName lowercaseString]]];
-    if (logo) {
-        self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logo];
-    }
-    else {
-        self.navigationItem.titleView = nil;
-        self.navigationItem.title = self.application.displayName;
-    }
-
     self.navigationController.navigationBar.barTintColor = barColor;
     self.navigationController.navigationBar.tintColor = tintColor;
 
@@ -120,7 +96,7 @@
 
 - (void)setLoading:(BOOL)loading
 {
-    if (self.isLoading == loading) {
+    if (_loading == loading) {
         return;
     }
 
@@ -180,7 +156,7 @@
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
 {
-    if (self.isLoading) {
+    if (self.loading) {
         return nil;
     }
     NSString *text = nil;
@@ -212,14 +188,14 @@
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
 {
-    if (self.isLoading) {
+    if (self.loading) {
         return [UIImage imageNamed:@"loading_imgBlue_78x78"]; //loading img
     }
     else {
-        NSString *imageName = [[[NSString stringWithFormat:@"placeholder_%@", self.application.displayName] lowercaseString]
-                               stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-        imageName = @"no-wifi"; //no-wifi
-        imageName = @"placeholder_dropbox";
+//        NSString *imageName = [[[NSString stringWithFormat:@"placeholder_%@", self.application.displayName] lowercaseString]
+//                               stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+//        imageName = @"no-wifi"; //no-wifi
+        NSString *imageName = @"placeholder_dropbox";
         return [UIImage imageNamed:imageName];
     }
 }
@@ -233,14 +209,13 @@
     animation.duration = 0.25;
     animation.cumulative = YES;
     animation.repeatCount = MAXFLOAT;
-//    animation 
 
     return animation;
 }
 
 - (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state
 {
-    if (self.isLoading) {
+    if (self.loading) {
         return nil;
     }
     NSString *text = nil;
@@ -277,7 +252,7 @@
 //}
 
 //-(UIColor *)imageTintColorForEmptyDataSet:(UIScrollView *)scrollView{
-//    return [UIColor redColor];//[UIColor colorWithHex:@"007ee5"];
+//    return [UIColor colorWithHex:@"007ee5"];
 //}
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
@@ -322,7 +297,7 @@
 //loading - 转圈的是否继续转圈
 - (BOOL)emptyDataSetShouldAnimateImageView:(UIScrollView *)scrollView
 {
-    return self.isLoading;
+    return self.loading;
 }
 
 //点击图片
@@ -342,7 +317,7 @@
 -(void)reTryeAction{
     self.loading = YES;
 //    self.emptyDataSetVisible = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(200 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.loading = NO;
         [self.tableView.mj_header endRefreshing];
     });
@@ -371,7 +346,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"%s",__FUNCTION__);
+
 }
 
 

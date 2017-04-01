@@ -40,8 +40,12 @@
 		894145871E8E0A0800C8DD59 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8941456E1E8E0A0800C8DD59 /* UIView+MJExtension.m */; };
 		894145881E8E0A0800C8DD59 /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 894145701E8E0A0800C8DD59 /* UIColor+Hexadecimal.m */; };
 		8941458C1E8E0A1200C8DD59 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8941458B1E8E0A1200C8DD59 /* UIScrollView+EmptyDataSet.m */; };
-		8941458F1E8E0A3100C8DD59 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 8941458E1E8E0A3100C8DD59 /* Application.m */; };
 		894145921E8E0A6B00C8DD59 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894145911E8E0A6B00C8DD59 /* HomeViewController.m */; };
+		894145D71E8E45A700C8DD59 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894145D61E8E45A700C8DD59 /* ListViewController.m */; };
+		894145DA1E8E45F800C8DD59 /* Base_TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894145D91E8E45F800C8DD59 /* Base_TableViewController.m */; };
+		894145DD1E8E461700C8DD59 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894145DC1E8E461700C8DD59 /* NewsViewController.m */; };
+		894145E01E8E480000C8DD59 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894145DF1E8E480000C8DD59 /* BaseViewController.m */; };
+		894145F21E8E5B5600C8DD59 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894145F11E8E5B5600C8DD59 /* MeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,10 +133,18 @@
 		894145701E8E0A0800C8DD59 /* UIColor+Hexadecimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hexadecimal.m"; sourceTree = "<group>"; };
 		8941458A1E8E0A1200C8DD59 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		8941458B1E8E0A1200C8DD59 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
-		8941458D1E8E0A3100C8DD59 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
-		8941458E1E8E0A3100C8DD59 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
 		894145901E8E0A6B00C8DD59 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		894145911E8E0A6B00C8DD59 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		894145D51E8E45A700C8DD59 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		894145D61E8E45A700C8DD59 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		894145D81E8E45F800C8DD59 /* Base_TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base_TableViewController.h; sourceTree = "<group>"; };
+		894145D91E8E45F800C8DD59 /* Base_TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base_TableViewController.m; sourceTree = "<group>"; };
+		894145DB1E8E461700C8DD59 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		894145DC1E8E461700C8DD59 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		894145DE1E8E480000C8DD59 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		894145DF1E8E480000C8DD59 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		894145F01E8E5B5600C8DD59 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
+		894145F11E8E5B5600C8DD59 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,14 +202,22 @@
 				894145701E8E0A0800C8DD59 /* UIColor+Hexadecimal.m */,
 				894145381E8E0A0700C8DD59 /* BaseNoDataViewController.h */,
 				894145391E8E0A0700C8DD59 /* BaseNoDataViewController.m */,
-				8941458D1E8E0A3100C8DD59 /* Application.h */,
-				8941458E1E8E0A3100C8DD59 /* Application.m */,
 				894145081E8E050200C8DD59 /* AppDelegate.h */,
 				894145091E8E050200C8DD59 /* AppDelegate.m */,
 				8941450B1E8E050200C8DD59 /* ViewController.h */,
 				8941450C1E8E050200C8DD59 /* ViewController.m */,
 				894145901E8E0A6B00C8DD59 /* HomeViewController.h */,
 				894145911E8E0A6B00C8DD59 /* HomeViewController.m */,
+				894145D51E8E45A700C8DD59 /* ListViewController.h */,
+				894145D61E8E45A700C8DD59 /* ListViewController.m */,
+				894145DE1E8E480000C8DD59 /* BaseViewController.h */,
+				894145DF1E8E480000C8DD59 /* BaseViewController.m */,
+				894145D81E8E45F800C8DD59 /* Base_TableViewController.h */,
+				894145D91E8E45F800C8DD59 /* Base_TableViewController.m */,
+				894145DB1E8E461700C8DD59 /* NewsViewController.h */,
+				894145DC1E8E461700C8DD59 /* NewsViewController.m */,
+				894145F01E8E5B5600C8DD59 /* MeViewController.h */,
+				894145F11E8E5B5600C8DD59 /* MeViewController.m */,
 				8941450E1E8E050200C8DD59 /* Main.storyboard */,
 				894145111E8E050200C8DD59 /* Assets.xcassets */,
 				894145131E8E050200C8DD59 /* LaunchScreen.storyboard */,
@@ -492,17 +512,20 @@
 				894145921E8E0A6B00C8DD59 /* HomeViewController.m in Sources */,
 				894145711E8E0A0800C8DD59 /* BaseNoDataViewController.m in Sources */,
 				894145851E8E0A0800C8DD59 /* UIScrollView+MJExtension.m in Sources */,
+				894145F21E8E5B5600C8DD59 /* MeViewController.m in Sources */,
 				8941457F1E8E0A0800C8DD59 /* MJRefreshGifHeader.m in Sources */,
 				8941457D1E8E0A0800C8DD59 /* MJRefreshBackNormalFooter.m in Sources */,
+				894145DD1E8E461700C8DD59 /* NewsViewController.m in Sources */,
 				894145721E8E0A0800C8DD59 /* DGActivityIndicatorRotatingTrigonAnimation.m in Sources */,
+				894145E01E8E480000C8DD59 /* BaseViewController.m in Sources */,
 				894145761E8E0A0800C8DD59 /* MJRefreshComponent.m in Sources */,
 				8941457A1E8E0A0800C8DD59 /* MJRefreshAutoNormalFooter.m in Sources */,
 				894145881E8E0A0800C8DD59 /* UIColor+Hexadecimal.m in Sources */,
 				894145731E8E0A0800C8DD59 /* DGActivityIndicatorView.m in Sources */,
 				894145791E8E0A0800C8DD59 /* MJRefreshAutoGifFooter.m in Sources */,
-				8941458F1E8E0A3100C8DD59 /* Application.m in Sources */,
 				894145751E8E0A0800C8DD59 /* MJRefreshBackFooter.m in Sources */,
 				894145871E8E0A0800C8DD59 /* UIView+MJExtension.m in Sources */,
+				894145D71E8E45A700C8DD59 /* ListViewController.m in Sources */,
 				894145841E8E0A0800C8DD59 /* NSBundle+MJRefresh.m in Sources */,
 				894145071E8E050200C8DD59 /* main.m in Sources */,
 				894145771E8E0A0800C8DD59 /* MJRefreshFooter.m in Sources */,
@@ -511,6 +534,7 @@
 				8941457C1E8E0A0800C8DD59 /* MJRefreshBackGifFooter.m in Sources */,
 				894145781E8E0A0800C8DD59 /* MJRefreshHeader.m in Sources */,
 				8941458C1E8E0A1200C8DD59 /* UIScrollView+EmptyDataSet.m in Sources */,
+				894145DA1E8E45F800C8DD59 /* Base_TableViewController.m in Sources */,
 				894145801E8E0A0800C8DD59 /* MJRefreshNormalHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
