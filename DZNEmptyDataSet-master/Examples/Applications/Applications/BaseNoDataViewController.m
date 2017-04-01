@@ -337,7 +337,7 @@
 -(void)reTryeAction{
     self.loading = YES;
 //    self.emptyDataSetVisible = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(200 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.loading = NO;
         [self.tableView.mj_header endRefreshing];
     });
