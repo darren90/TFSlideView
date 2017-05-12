@@ -34,7 +34,7 @@
             startingLineNumber = "171"
             endingLineNumber = "171"
             landmarkName = "-layoutTabbar"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -50,7 +50,7 @@
             startingLineNumber = "253"
             endingLineNumber = "253"
             landmarkName = "-setSelectedIndex:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -66,7 +66,7 @@
             startingLineNumber = "176"
             endingLineNumber = "176"
             landmarkName = "-layoutTabbar"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -82,7 +82,7 @@
             startingLineNumber = "185"
             endingLineNumber = "185"
             landmarkName = "-layoutTabbar"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -98,7 +98,7 @@
             startingLineNumber = "175"
             endingLineNumber = "175"
             landmarkName = "-layoutTabbar"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -114,7 +114,7 @@
             startingLineNumber = "236"
             endingLineNumber = "236"
             landmarkName = "-setSelectedIndex:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -130,7 +130,7 @@
             startingLineNumber = "199"
             endingLineNumber = "199"
             landmarkName = "-layoutTabbar"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -146,7 +146,7 @@
             startingLineNumber = "228"
             endingLineNumber = "228"
             landmarkName = "-switchingFrom:to:percent:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -162,7 +162,7 @@
             startingLineNumber = "128"
             endingLineNumber = "128"
             landmarkName = "-setTabbarItems:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -178,7 +178,7 @@
             startingLineNumber = "123"
             endingLineNumber = "123"
             landmarkName = "-setTabbarItems:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

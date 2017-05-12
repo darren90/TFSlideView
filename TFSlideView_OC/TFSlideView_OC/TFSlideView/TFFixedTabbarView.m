@@ -129,8 +129,6 @@
 //            label.text = item.title;
             label.attributedText = attStr;
 
-            //            [label sizeToFit];
-            //            label.center = bgView.center;
             label.textAlignment = NSTextAlignmentCenter;
             
             label.tag = kLabelTagBase + i;
