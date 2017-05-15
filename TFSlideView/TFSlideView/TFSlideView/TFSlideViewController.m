@@ -8,6 +8,33 @@
 
 #import "TFSlideViewController.h"
 
+
+
+#define KRandomColor     [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0];
+
+
+
+@interface TFSlideViewCell : UICollectionViewCell
+
+
+@property (nonatomic,weak)UIView * mainView;
+
+
+@end
+
+
+@implementation TFSlideViewCell
+
+-(void)setMainView:(UIView *)mainView{
+    _mainView = mainView;
+
+}
+
+
+@end
+
+#pragma mark  - TFSlideViewController
+
 @interface TFSlideViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,weak)UIScrollView *topSrollView;
@@ -16,6 +43,12 @@
 
 @property (nonatomic,strong) NSArray *datas;
 
+@property (nonatomic,strong)NSMutableArray * subVcs;
+
+
+@property (nonatomic,weak)UIButton * selectBtn;
+
+
 @end
 
 @implementation TFSlideViewController
@@ -23,7 +56,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self initTopLabel];
+    [self initTopbtn];
     [self initCollectionView];
 
     self.topSrollView.backgroundColor = [UIColor cyanColor];
@@ -34,42 +67,33 @@
 
 //    [self.view setNeedsLayout];
 //    self.view.translatesAutoresizingMaskIntoConstraints = NO;
-    NSLog(@"--self.view-:%@",NSStringFromCGRect(self.view.frame));
-    NSLog(@"--topSrollView-:%@",NSStringFromCGRect(self.topSrollView.frame));
-    NSLog(@"--collectionView-:%@",NSStringFromCGRect(self.collectionView.frame));
+//    NSLog(@"--self.view-:%@",NSStringFromCGRect(self.view.frame));
+//    NSLog(@"--topSrollView-:%@",NSStringFromCGRect(self.topSrollView.frame));
+//    NSLog(@"--collectionView-:%@",NSStringFromCGRect(self.collectionView.frame));
+    [self.view layoutIfNeeded];
 
 //   NSURL *url = [NSURL URLWithString:nil];
 
-    [self vv];
 }
 
-- (void)vv {
-    return;
-
-    UIView *purpleView = [[UIView alloc] init];
-    purpleView.backgroundColor = [UIColor purpleColor];
-    // 禁止将 AutoresizingMask 转换为 Constraints
-    purpleView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:purpleView];
-    // 添加 width 约束
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:150];
-    [purpleView addConstraint:widthConstraint];
-    // 添加 height 约束
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:150];
-    [purpleView addConstraint:heightConstraint];
-    // 添加 left 约束
-    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:100];
-    [self.view addConstraint:leftConstraint];
-    // 添加 top 约束
-    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:200];
-    [self.view addConstraint:topConstraint];
-
-    NSLog(@"--pp:%@",NSStringFromCGRect(purpleView.frame));
+-(UIColor *)tabNormalColor{
+    if (_tabNormalColor == nil) {
+        _tabNormalColor = [UIColor blackColor];
+    }
+    return _tabNormalColor;
 }
+
+-(UIColor *)tabSelectColor{
+    if (_tabSelectColor == nil) {
+        _tabSelectColor = [UIColor redColor];
+    }
+    return _tabSelectColor;
+}
+
 
 #pragma mark - 初始化控件
 
-- (void)initTopLabel{
+- (void)initTopbtn{
 //    self.view.translatesAutoresizingMaskIntoConstraints = NO;
 
     UIScrollView *topSrollView = [[UIScrollView alloc]init];
@@ -86,9 +110,10 @@
 
     [topSrollView addConstraint:c4];
     [self.view addConstraints:@[c1,c2,c3]];
-    NSLog(@"--topSrollView-1-:%@",NSStringFromCGRect(self.topSrollView.frame));
-
-//    [self.topSrollView setNeedsLayout];
+//    NSLog(@"--topSrollView-1-:%@",NSStringFromCGRect(self.topSrollView.frame));
+    topSrollView.showsHorizontalScrollIndicator = NO;
+    [self.topSrollView layoutIfNeeded];
+    [self.view layoutIfNeeded];
 }
 
 - (void)initCollectionView{
@@ -112,6 +137,11 @@
     collectionView.delegate = self;
     collectionView.dataSource = self;
 
+    collectionView.pagingEnabled = YES;
+    collectionView.showsHorizontalScrollIndicator = NO;
+    [collectionView registerClass:[TFSlideViewCell class] forCellWithReuseIdentifier:@"TFSlideViewCell"];
+
+    [self.collectionView layoutIfNeeded];
 }
 
 #pragma mark - init data
@@ -123,57 +153,90 @@
         return;
     }
 
-    NSLog(@"--topSrollView-3-:%@",NSStringFromCGRect(self.topSrollView.frame));
     [self.topSrollView layoutIfNeeded];
 
     CGFloat margin = 10;
     CGFloat totalMargin = margin;
-    UILabel *lastLabel = nil;
+    UIButton *lastbtn = nil;
     for (int i = 0 ; i< titles.count ; i++) {
         NSString *title = titles[i];
 
-        UILabel *label = [[UILabel alloc]init];
-        [self.topSrollView addSubview:label];
-        label.text = title;
-        label.textColor = [UIColor blackColor];
-        label.font = [UIFont systemFontOfSize:15];
-        label.translatesAutoresizingMaskIntoConstraints = NO;
-        label.textAlignment = NSTextAlignmentCenter;
+        UIButton *btn = [[UIButton alloc]init];
+        [self.topSrollView addSubview:btn];
+        [btn setTitle:title forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15];
+        btn.translatesAutoresizingMaskIntoConstraints = NO;
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [btn addTarget:self action:@selector(itemBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        btn.tag = i;
 
-        if (i % 2 == 0) {
-            lastLabel.backgroundColor = [UIColor lightGrayColor];
-        }
+        lastbtn.backgroundColor = KRandomColor;
 
-        CGFloat labelW = [title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]}].width + 5;
-//        CGFloat labelX = margin + (labelW + margin) * i;
-        totalMargin += labelW + margin + 100;
+        CGFloat btnW = [title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]}].width + 5;
+        totalMargin += btnW + margin;
 
-        NSLayoutConstraint *c1 = [NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topSrollView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
-        NSLayoutConstraint *c2 = [NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.topSrollView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
+        NSLayoutConstraint *c1 = [NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topSrollView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
+//        NSLayoutConstraint *c2 = [NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.topSrollView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
 
-//        NSLayoutConstraint *c31 = [NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:CGRectGetHeight(self.topSrollView.frame)];
+        NSLayoutConstraint *c31 = [NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:CGRectGetHeight(self.topSrollView.frame)];
 
-        NSLayoutConstraint *c3 = [NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:labelW];
-        [label addConstraints:@[c3]];
+        NSLayoutConstraint *c3 = [NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:btnW];
+        [btn addConstraints:@[c3,c31]];
 
         NSLayoutConstraint *c4;
-        if(lastLabel == nil){
-            c4 = [NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.topSrollView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:margin];
+        if(lastbtn == nil){
+            c4 = [NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.topSrollView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:margin];
         }else{
-           c4 = [NSLayoutConstraint constraintWithItem:label attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:lastLabel attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:margin];
+           c4 = [NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:lastbtn attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:margin];
         }
 
+        if (i == self.initSelctIndex) {
+            self.selectBtn = btn;
+        }
 
-        [self.topSrollView addConstraints:@[c1,c2,c4]];
-        lastLabel = label;
-        NSLog(@"---label.frame--:%@",NSStringFromCGRect(label.frame));
+        [self.topSrollView addConstraints:@[c4,c1]];
+        lastbtn = btn;
+        [self.topSrollView layoutIfNeeded];
+        NSLog(@"---btn.frame--:%@",NSStringFromCGRect(btn.frame));
     }
-//    CGFloat maxX = CGRectGetMaxX(lastLabel.frame);
-    self.topSrollView.contentSize = CGSizeMake(totalMargin+1000, 30);
+
+//    CGFloat maxX = CGRectGetMaxX(lastbtn.frame);
+    self.topSrollView.contentSize = CGSizeMake(totalMargin, 30);
+
+    self.datas  = titles;
+
     [self.collectionView reloadData];
+}
 
-    NSLog(@"--topSrollView-2-:%@",NSStringFromCGRect(self.topSrollView.frame));
+-(void)itemBtnClick:(UIButton *)btn{
+    NSLog(@"----itemBtnClick--");
 
+    [_selectBtn setTitleColor:self.tabNormalColor forState:UIControlStateNormal];
+    [btn setTitleColor:self.tabSelectColor forState:UIControlStateNormal];
+    _selectBtn = btn;
+
+    // 标题居中
+    CGFloat offsetX = btn.center.x - self.view.frame.size.width * 0.5;
+    if (offsetX < 0) {
+        offsetX = 0;
+    }
+
+    CGFloat maxOffsetX = self.topSrollView.contentSize.width - self.view.frame.size.width;
+    if(offsetX > maxOffsetX) {
+        offsetX = maxOffsetX;
+    }
+    [self.topSrollView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+
+    //
+    [self selectViewController:btn.tag];
+}
+
+-(void)selectViewController:(NSInteger)index{
+    
+    NSIndexPath *path = [NSIndexPath indexPathForItem:index inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -181,9 +244,50 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    TFSlideViewCell*cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TFSlideViewCell" forIndexPath:indexPath];
+    if ([self.deledate respondsToSelector:@selector(TFSlideViewController:didSelectAtIndex:)]) {
+        UIViewController *vc =  [self.deledate TFSlideViewController:self didSelectAtIndex:indexPath.row];
+        if (![self.subVcs containsObject:vc]) {
+            [self addChildViewController:vc];
+            vc.view.backgroundColor = KRandomColor;
+            vc.view.frame = cell.bounds;
+            [cell addSubview:vc.view];
+        }else{
+            [cell addSubview:vc.view];
+        }
+    }
+
+    return cell;
 }
 
+
+-(NSMutableArray *)subVcs{
+    if (_subVcs == nil) {
+        _subVcs = [NSMutableArray array];
+    }
+    return _subVcs;
+}
  
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -36,5 +36,6 @@ typedef  NS_ENUM(NSInteger, TFSlideViewShowType){
 @property (nonatomic,assign)CGFloat topMagin;
 
 
+@property (nonatomic,weak)id<TFSlideViewControllerDelegate> deledate;
 
 @end

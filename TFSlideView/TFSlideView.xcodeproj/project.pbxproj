@@ -16,6 +16,7 @@
 		890DA6B11EC442CC00A97E52 /* TFSlideViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 890DA6B01EC442CC00A97E52 /* TFSlideViewTests.m */; };
 		890DA6BC1EC442CC00A97E52 /* TFSlideViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 890DA6BB1EC442CC00A97E52 /* TFSlideViewUITests.m */; };
 		890DA6CC1EC4434200A97E52 /* TFSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890DA6CB1EC4434200A97E52 /* TFSlideViewController.m */; };
+		896C07101EC9570E00C6D682 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 896C070F1EC9570E00C6D682 /* Demo1ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		890DA6BD1EC442CC00A97E52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		890DA6CA1EC4434200A97E52 /* TFSlideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSlideViewController.h; sourceTree = "<group>"; };
 		890DA6CB1EC4434200A97E52 /* TFSlideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFSlideViewController.m; sourceTree = "<group>"; };
+		896C070E1EC9570E00C6D682 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
+		896C070F1EC9570E00C6D682 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				890DA69A1EC442CC00A97E52 /* AppDelegate.m */,
 				890DA69C1EC442CC00A97E52 /* ViewController.h */,
 				890DA69D1EC442CC00A97E52 /* ViewController.m */,
+				896C070E1EC9570E00C6D682 /* Demo1ViewController.h */,
+				896C070F1EC9570E00C6D682 /* Demo1ViewController.m */,
 				890DA69F1EC442CC00A97E52 /* Main.storyboard */,
 				890DA6A21EC442CC00A97E52 /* Assets.xcassets */,
 				890DA6A41EC442CC00A97E52 /* LaunchScreen.storyboard */,
@@ -288,6 +293,7 @@
 			files = (
 				890DA6CC1EC4434200A97E52 /* TFSlideViewController.m in Sources */,
 				890DA69E1EC442CC00A97E52 /* ViewController.m in Sources */,
+				896C07101EC9570E00C6D682 /* Demo1ViewController.m in Sources */,
 				890DA69B1EC442CC00A97E52 /* AppDelegate.m in Sources */,
 				890DA6981EC442CC00A97E52 /* main.m in Sources */,
 			);
