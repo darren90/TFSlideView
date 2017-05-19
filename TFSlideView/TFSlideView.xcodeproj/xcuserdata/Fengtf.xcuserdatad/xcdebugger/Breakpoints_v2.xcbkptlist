@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TFSlideView/TFSlideView/TFSlideViewController.m"
-            timestampString = "516521021.128393"
+            timestampString = "516876024.094468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "-initCollectionView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

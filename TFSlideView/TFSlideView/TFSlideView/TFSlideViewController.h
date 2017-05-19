@@ -34,7 +34,10 @@ typedef  NS_ENUM(NSInteger, TFSlideViewShowType){
 @property(nonatomic,assign)NSInteger initSelctIndex;
 /** 距离顶部的距离 */
 @property (nonatomic,assign)CGFloat topMagin;
-
+/** 正常状态 ，未选中状态的大小 */
+@property (nonatomic,assign)NSInteger normalFontSize;
+/** 正常状态 ，未选中状态的大小 */
+@property (nonatomic,assign)NSInteger seleFontSize;
 
 @property (nonatomic,weak)id<TFSlideViewControllerDelegate> deledate;
 

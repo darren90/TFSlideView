@@ -27,7 +27,10 @@
     label.textAlignment = NSTextAlignmentCenter;
  //    label.frame.size = CGSizeMake(300, 50);
 
+    NSLog(@"--Demo-Vc-:%p -title : %@",self,self.title);
+
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
