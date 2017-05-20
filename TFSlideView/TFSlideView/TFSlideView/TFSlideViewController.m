@@ -7,6 +7,7 @@
 //
 
 #import "TFSlideViewController.h"
+#import "FlowLayout.h"
 
 
 typedef NS_ENUM(NSInteger, SlideArrangeType) {
@@ -17,6 +18,7 @@ typedef NS_ENUM(NSInteger, SlideArrangeType) {
 #define KRandomColor     [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0];
 
 NSInteger const baseTagNum = 100;
+CGFloat const extraWidth = 10;
 
 @interface TFSlideViewCell : UICollectionViewCell
 
@@ -77,6 +79,14 @@ NSInteger const baseTagNum = 100;
 
 @implementation TFSlideViewController
 
+-(void)loadView{
+    [super loadView];
+
+    CGRect vf = self.view.frame;
+    vf.size.width += extraWidth;
+    self.view.frame = vf;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -84,7 +94,7 @@ NSInteger const baseTagNum = 100;
     [self initCollectionView];
 
     self.topSrollView.backgroundColor = [UIColor cyanColor];
-    self.collectionView.backgroundColor = [UIColor brownColor];
+    self.collectionView.backgroundColor = [UIColor yellowColor];
     [self.view layoutIfNeeded];
 
     self.datas = [NSArray array];
@@ -93,10 +103,10 @@ NSInteger const baseTagNum = 100;
 //    self.view.translatesAutoresizingMaskIntoConstraints = NO;
 //    NSLog(@"--self.view-:%@",NSStringFromCGRect(self.view.frame));
 //    NSLog(@"--topSrollView-:%@",NSStringFromCGRect(self.topSrollView.frame));
-//    NSLog(@"--collectionView-:%@",NSStringFromCGRect(self.collectionView.frame));
     [self.view layoutIfNeeded];
 
 //   NSURL *url = [NSURL URLWithString:nil];
+    NSLog(@"--collectionView-:%@",NSStringFromCGRect(self.collectionView.frame));
 
 }
 
@@ -156,7 +166,7 @@ NSInteger const baseTagNum = 100;
 }
 
 - (void)initCollectionView{
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    FlowLayout *layout = [[FlowLayout alloc]init];
     UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width + 10, self.view.frame.size.height) collectionViewLayout:layout];
     self.collectionView  = collectionView;
     [self.view addSubview:collectionView];
@@ -164,12 +174,13 @@ NSInteger const baseTagNum = 100;
 
     NSLayoutConstraint *c1 = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topSrollView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
     NSLayoutConstraint *c2 = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0];
-    NSLayoutConstraint *c3 = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *c3 = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:10.0];
     NSLayoutConstraint *c4 = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
     [self.view addConstraints:@[c1,c2,c3,c4]];
 
     [self.collectionView layoutIfNeeded];
 
+//    collectionView.prefetchingEnabled = NO;
     layout.itemSize = CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.height);
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
@@ -184,6 +195,18 @@ NSInteger const baseTagNum = 100;
 
     [self.collectionView layoutIfNeeded];
 }
+
+//-(BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath{
+//    NSLog(@"-shouldShowMenuForItemAtIndexPath-:%ld",(long)indexPath.item);
+//    return NO;
+//}
+
+-(BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
+{
+    NSLog(@"-canPerformAction-:%ld",(long)indexPath.item);
+    return NO;
+}
+
 
 #pragma mark - init data
 
@@ -287,7 +310,7 @@ NSInteger const baseTagNum = 100;
 }
 
 -(void)itemBtnClick:(UIButton *)btn{
-    NSLog(@"----itemBtnClick--");
+//    NSLog(@"----itemBtnClick--");
 
     NSInteger index = btn.tag - baseTagNum;
 
@@ -338,29 +361,29 @@ NSInteger const baseTagNum = 100;
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
     //字体缩放渐变
-    NSInteger leftI = scrollView.contentOffset.x / self.view.frame.size.width + baseTagNum;
-
-    NSInteger rightI = leftI + 1;
-
-    UIButton *leftBtn = [self.topSrollView viewWithTag:leftI];
-    UIButton *rightBt;
-    if (rightI < (self.topSrollView.subviews.count + baseTagNum)) {
-        rightBt = [self.topSrollView viewWithTag:rightI];
-    }
-
-    //缩放
-    CGFloat scaleR = scrollView.contentOffset.x / self.view.frame.size.width - leftI;
-    CGFloat scaleL = 1 - scaleR;
-
-    leftBtn.transform =  CGAffineTransformMakeScale(0.2*scaleL + 1, 0.2*scaleL + 1);
-    rightBt.transform =  CGAffineTransformMakeScale(0.2*scaleR + 1, 0.2*scaleR + 1);
-
-    //黑色 000 红色100
-    UIColor *righcolor = [UIColor colorWithRed:scaleR green:0.0 blue:0.0 alpha:1.0];
-    UIColor *leftcolor = [UIColor colorWithRed:scaleL green:0.0 blue:0.0 alpha:1.0];
-
-    [rightBt setTitleColor:righcolor forState:UIControlStateNormal];
-    [leftBtn setTitleColor:leftcolor forState:UIControlStateNormal];
+//    NSInteger leftI = scrollView.contentOffset.x / self.view.frame.size.width + baseTagNum;
+//
+//    NSInteger rightI = leftI + 1;
+//
+//    UIButton *leftBtn = [self.topSrollView viewWithTag:leftI];
+//    UIButton *rightBt;
+//    if (rightI < (self.topSrollView.subviews.count + baseTagNum)) {
+//        rightBt = [self.topSrollView viewWithTag:rightI];
+//    }
+//
+//    //缩放
+//    CGFloat scaleR = scrollView.contentOffset.x / self.view.frame.size.width - leftI;
+//    CGFloat scaleL = 1 - scaleR;
+//
+//    leftBtn.transform =  CGAffineTransformMakeScale(0.2*scaleL + 1, 0.2*scaleL + 1);
+//    rightBt.transform =  CGAffineTransformMakeScale(0.2*scaleR + 1, 0.2*scaleR + 1);
+//
+//    //黑色 000 红色100
+//    UIColor *righcolor = [UIColor colorWithRed:scaleR green:0.0 blue:0.0 alpha:1.0];
+//    UIColor *leftcolor = [UIColor colorWithRed:scaleL green:0.0 blue:0.0 alpha:1.0];
+//
+//    [rightBt setTitleColor:righcolor forState:UIControlStateNormal];
+//    [leftBtn setTitleColor:leftcolor forState:UIControlStateNormal];
 
 }
 
@@ -378,6 +401,20 @@ NSInteger const baseTagNum = 100;
     return  self.datas.count;
 }
 
+
+
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+
+//    collectionView.d
+    NSLog(@"-willDisplayCell : %ld ",(long)indexPath.item);
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    NSLog(@"-didEndDisplayingCell : %ld ",(long)indexPath.item);
+
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     TFSlideViewCell*cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TFSlideViewCell" forIndexPath:indexPath];
     if ([self.deledate respondsToSelector:@selector(TFSlideViewController:didSelectAtIndex:)]) {
@@ -385,7 +422,7 @@ NSInteger const baseTagNum = 100;
         if (![self.subVcs containsObject:vc]) {
             [self addChildViewController:vc];
             vc.view.backgroundColor = KRandomColor;
-            vc.view.frame = cell.bounds;
+            vc.view.frame = CGRectMake(0, 0, cell.bounds.size.width - extraWidth, cell.bounds.size.height); //cell.bounds;
             [cell addSubview:vc.view];
 //            cell.mainView = vc.view;
 
