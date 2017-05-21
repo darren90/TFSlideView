@@ -20,6 +20,8 @@
 
 @property (nonatomic,weak)UIButton * nodataBtn;
 
+@property (nonatomic,weak)UIScrollView * bgScrollView;
+
 @end
 
 @implementation BaseViewController
@@ -27,12 +29,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self initScrollView];
     [self initNoDataView];
     [self initIndicatorView];
 
     //默认开始请求
     [self nodataBtnClick];
 }
+
+-(void)initScrollView{
+    UIScrollView * bgScrollView = [[UIScrollView alloc]init];
+    self.bgScrollView = bgScrollView;
+    [self.view addSubview:bgScrollView];
+    bgScrollView.alwaysBounceVertical = YES;
+    bgScrollView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSLayoutConstraint *s1 = [NSLayoutConstraint constraintWithItem:bgScrollView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *s2 = [NSLayoutConstraint constraintWithItem:bgScrollView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    NSLayoutConstraint *s3 = [NSLayoutConstraint constraintWithItem:bgScrollView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *s4 = [NSLayoutConstraint constraintWithItem:bgScrollView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    [self.view addConstraints:@[s1,s2,s3,s4]];
+}
+
 
 -(void)initNoDataView{
     //1 - imageView
@@ -41,7 +59,7 @@
     self.nodataImgView = nodataImgView;
     nodataImgView.contentMode = UIViewContentModeScaleAspectFill;
     nodataImgView.clipsToBounds = YES;
-    [self.view addSubview:nodataImgView];
+    [self.bgScrollView addSubview:nodataImgView];
 
     //2 - titlelabel
     UILabel * nodataTitleL = [[UILabel alloc]init];
@@ -50,7 +68,7 @@
     nodataTitleL.font = [UIFont systemFontOfSize:14.5];
     self.nodataTitleL = nodataTitleL;
     nodataTitleL.text = @"网络不好，请稍后重试";
-    [self.view addSubview:nodataTitleL];
+    [self.bgScrollView addSubview:nodataTitleL];
 
     //3 - nodataBtn
     UIButton * nodataBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -61,7 +79,7 @@
     [nodataBtn setTitleColor:[UIColor colorWithRed:72/255.0 green:161/255.0 blue:234/255.0 alpha:1.0] forState:UIControlStateHighlighted];
 
     [nodataBtn addTarget:self action:@selector(nodataBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:nodataBtn];
+    [self.bgScrollView addSubview:nodataBtn];
 
 
     nodataImgView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -72,20 +90,20 @@
 
 
     // 1 - title frame
-    NSLayoutConstraint *t1 = [NSLayoutConstraint constraintWithItem:nodataTitleL attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
-    NSLayoutConstraint *t2 = [NSLayoutConstraint constraintWithItem:nodataTitleL attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:30.0];
+    NSLayoutConstraint *t1 = [NSLayoutConstraint constraintWithItem:nodataTitleL attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.bgScrollView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *t2 = [NSLayoutConstraint constraintWithItem:nodataTitleL attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.bgScrollView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0];
 
     [self.view addConstraints:@[t1,t2]];
 
     // 2 - image frame
     NSLayoutConstraint *m1 = [NSLayoutConstraint constraintWithItem:nodataImgView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.nodataTitleL attribute:NSLayoutAttributeTop multiplier:1.0 constant:-20.0];
-    NSLayoutConstraint *m2 = [NSLayoutConstraint constraintWithItem:nodataImgView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *m2 = [NSLayoutConstraint constraintWithItem:nodataImgView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.bgScrollView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
 
-    [self.view addConstraints:@[m1,m2]];
+    [self.bgScrollView addConstraints:@[m1,m2]];
 
     // 3 - btn frame
     NSLayoutConstraint *b1 = [NSLayoutConstraint constraintWithItem:nodataBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.nodataTitleL attribute:NSLayoutAttributeBottom multiplier:1.0 constant:7.0];
-    NSLayoutConstraint *b2 = [NSLayoutConstraint constraintWithItem:nodataBtn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *b2 = [NSLayoutConstraint constraintWithItem:nodataBtn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.bgScrollView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
 
     [self.view addConstraints:@[b1,b2]];
 
@@ -99,23 +117,25 @@
 
     CGFloat lw = self.view.bounds.size.width / 6.0f;
     CGFloat lh = self.view.bounds.size.height / 6.0f;
+    
+//    activityView.backgroundColor = [UIColor blueColor];
 
-
-    [self.view addSubview:activityView];
+    [self.bgScrollView addSubview:activityView];
     self.activityView = activityView;
 //    [activityView startAnimating];
+ 
+    CGFloat x = (self.view.bounds.size.width - lw) / 2.0;
+    CGFloat y = (self.view.bounds.size.height - lh) / 2.0;
+    activityView.frame = CGRectMake(x, y - 130, lw, lh);
 
-//    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:150];
-//    [purpleView addConstraint:widthConstraint];
-
-    NSLayoutConstraint *l1 = [NSLayoutConstraint constraintWithItem:activityView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
-    NSLayoutConstraint *l2 = [NSLayoutConstraint constraintWithItem:activityView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
-
-    NSLayoutConstraint *w = [NSLayoutConstraint constraintWithItem:activityView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:lw];
-    NSLayoutConstraint *h = [NSLayoutConstraint constraintWithItem:activityView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:lh];
-
-    [activityView addConstraints:@[w,h]];
-    [self.view addConstraints:@[l1,l2]];
+//    NSLayoutConstraint *l1 = [NSLayoutConstraint constraintWithItem:activityView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
+//    NSLayoutConstraint *l2 = [NSLayoutConstraint constraintWithItem:activityView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+//
+//    NSLayoutConstraint *w = [NSLayoutConstraint constraintWithItem:activityView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:lw];
+//    NSLayoutConstraint *h = [NSLayoutConstraint constraintWithItem:activityView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:lh];
+//
+//    [activityView addConstraints:@[w,h]];
+//    [self.view addConstraints:@[l1,l2]];
 }
 
 
@@ -153,14 +173,22 @@
 -(void)stopAnimate{
     [self.activityView stopAnimating];
 //    [UIView animateWithDuration:0.5 animations:^{
-        self.nodataImgView.hidden = YES;
-        self.nodataTitleL.hidden = YES;
-        self.nodataBtn.hidden = YES;
-
+    self.nodataImgView.hidden = YES;
+    self.nodataTitleL.hidden = YES;
+    self.nodataBtn.hidden = YES;
+    self.bgScrollView.hidden = YES;
+    
+    [self.nodataImgView removeFromSuperview];
+    [self.nodataTitleL removeFromSuperview];
+    [self.nodataBtn removeFromSuperview];
+    [self.bgScrollView removeFromSuperview];
+    
 //    }];
 }
 
 -(void)stopAnimateAndShowError:(NSString *)msg{
+    [self.view bringSubviewToFront:self.bgScrollView];
+    
     if (msg) {
         self.nodataTitleL.text = msg;
     }
@@ -178,24 +206,24 @@
     _requestState = requestState;
 
     switch (requestState) {
-        case RRDownloadStateNone:
+        case RequestStateNone:
         {
             [self stopAnimate];
-
+            
         }
             break;
-        case RRDownloadStateNoNet:
+        case RequestStateNoNet:
         {
             [self stopAnimateAndShowError:nil];
         }
-
+            
             break;
-        case RRDownloadStateNoData:
+        case RequestStateNoData:
         {
             [self stopAnimateAndShowError:@"暂无数据,请稍后重试"];
         }
             break;
-
+            
         default:
             break;
     }

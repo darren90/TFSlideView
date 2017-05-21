@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, SlideArrangeType) {
 #define KRandomColor     [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0];
 
 NSInteger const baseTagNum = 100;
-CGFloat const extraWidth = 10;
+CGFloat const extraWidth = 100;
 
 @interface TFSlideViewCell : UICollectionViewCell
 
@@ -61,7 +61,7 @@ CGFloat const extraWidth = 10;
 
 #pragma mark  - TFSlideViewController
 
-@interface TFSlideViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
+@interface TFSlideViewController () <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic,weak)UIScrollView *topSrollView;
 
@@ -401,17 +401,15 @@ CGFloat const extraWidth = 10;
     return  self.datas.count;
 }
 
-
-
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
 
 //    collectionView.d
-    NSLog(@"-willDisplayCell : %ld ",(long)indexPath.item);
+//    NSLog(@"-willDisplayCell : %ld ",(long)indexPath.item);
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
 
-    NSLog(@"-didEndDisplayingCell : %ld ",(long)indexPath.item);
+//    NSLog(@"-didEndDisplayingCell : %ld ",(long)indexPath.item);
 
 }
 
@@ -435,6 +433,15 @@ CGFloat const extraWidth = 10;
     }
 
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"---:%d ");
+    if(indexPath.row % 2 == 0){
+        return CGSizeZero;
+    }else{
+       return CGSizeMake([UIScreen mainScreen].bounds.size.width, collectionView.frame.size.height);
+    }
 }
 
 

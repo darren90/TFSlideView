@@ -18,6 +18,7 @@
 		890DA6CC1EC4434200A97E52 /* TFSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 890DA6CB1EC4434200A97E52 /* TFSlideViewController.m */; };
 		896C07101EC9570E00C6D682 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 896C070F1EC9570E00C6D682 /* Demo1ViewController.m */; };
 		89AEA13B1ECF4D1100E38C24 /* FlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AEA13A1ECF4D1100E38C24 /* FlowLayout.m */; };
+		FEF76F751ECFDCB2000CE6DB /* TFCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF76F741ECFDCB2000CE6DB /* TFCollectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		896C070F1EC9570E00C6D682 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
 		89AEA1391ECF4D1100E38C24 /* FlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowLayout.h; sourceTree = "<group>"; };
 		89AEA13A1ECF4D1100E38C24 /* FlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowLayout.m; sourceTree = "<group>"; };
+		FEF76F731ECFDCB2000CE6DB /* TFCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFCollectionView.h; sourceTree = "<group>"; };
+		FEF76F741ECFDCB2000CE6DB /* TFCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFCollectionView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +117,9 @@
 				890DA6991EC442CC00A97E52 /* AppDelegate.h */,
 				890DA69A1EC442CC00A97E52 /* AppDelegate.m */,
 				890DA69C1EC442CC00A97E52 /* ViewController.h */,
+				890DA69D1EC442CC00A97E52 /* ViewController.m */,
 				89AEA1391ECF4D1100E38C24 /* FlowLayout.h */,
 				89AEA13A1ECF4D1100E38C24 /* FlowLayout.m */,
-				890DA69D1EC442CC00A97E52 /* ViewController.m */,
 				896C070E1EC9570E00C6D682 /* Demo1ViewController.h */,
 				896C070F1EC9570E00C6D682 /* Demo1ViewController.m */,
 				890DA69F1EC442CC00A97E52 /* Main.storyboard */,
@@ -159,6 +162,8 @@
 			children = (
 				890DA6CA1EC4434200A97E52 /* TFSlideViewController.h */,
 				890DA6CB1EC4434200A97E52 /* TFSlideViewController.m */,
+				FEF76F731ECFDCB2000CE6DB /* TFCollectionView.h */,
+				FEF76F741ECFDCB2000CE6DB /* TFCollectionView.m */,
 			);
 			path = TFSlideView;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 				89AEA13B1ECF4D1100E38C24 /* FlowLayout.m in Sources */,
 				890DA69E1EC442CC00A97E52 /* ViewController.m in Sources */,
 				896C07101EC9570E00C6D682 /* Demo1ViewController.m in Sources */,
+				FEF76F751ECFDCB2000CE6DB /* TFCollectionView.m in Sources */,
 				890DA69B1EC442CC00A97E52 /* AppDelegate.m in Sources */,
 				890DA6981EC442CC00A97E52 /* main.m in Sources */,
 			);
