@@ -39,9 +39,9 @@ NSString * const cellID = @"cellID";
         self.fatherVc = parentViewController;
 
         self.systemVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+        self.delegate = delegate;
 
         [self initSub];
-        self.delegate = delegate;
     }
     return self;
 }
@@ -55,6 +55,8 @@ NSString * const cellID = @"cellID";
     }else{
         NSAssert(NO, @"请实现代理方法");
     }
+    
+    [self.collectionView reloadData];
 }
 
 
@@ -82,7 +84,7 @@ NSString * const cellID = @"cellID";
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
     if (self.systemVersion < 8.0) {
-//        [self setupChildVcForCell:cell atIndexPath:indexPath];
+        [self setupChildVcForCell:cell atIndexPath:indexPath];
     }
 
     return cell;
@@ -104,7 +106,26 @@ NSString * const cellID = @"cellID";
         return;
     }
 
-    self.currentChildVc =
+    NSString *key = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
+    _currentChildVc = self.childVcsDic[key];
+    
+    BOOL isFirstLoad = (_currentChildVc == nil);
+    
+    if (_currentChildVc == nil) {
+        _currentChildVc = [self.delegate pageView:nil vcForRowAtIndex:indexPath.item];
+        
+        //set value for diction
+        self.childVcsDic[key] = _currentChildVc;
+    }
+    
+    if (_currentChildVc.parentViewController != self.fatherVc) {
+        [self.fatherVc addChildViewController:_currentChildVc];
+    }
+    
+    _currentChildVc.view.frame = cell.contentView.bounds;
+    [cell.contentView addSubview:_currentChildVc.view];
+    [_currentChildVc didMoveToParentViewController:self.fatherVc];
+    
 
 }
 
@@ -133,6 +154,14 @@ NSString * const cellID = @"cellID";
         _collectionView = collectionView;
     }
     return _collectionView;
+}
+
+-(NSMutableDictionary<NSString *,UIViewController *> *)childVcsDic{
+    if (_childVcsDic == nil) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        _childVcsDic = dic;
+    }
+    return _childVcsDic;
 }
 
 

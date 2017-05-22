@@ -18,6 +18,7 @@
 		89A287E31ED2E5B30009B262 /* TFSegmentStyleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A287E21ED2E5B30009B262 /* TFSegmentStyleConfig.m */; };
 		89A287E61ED2E9530009B262 /* TFContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A287E51ED2E9530009B262 /* TFContentView.m */; };
 		89A287E91ED2E97B0009B262 /* TFTopSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A287E81ED2E97B0009B262 /* TFTopSlideView.m */; };
+		FEF76F7B1ED33AA3000CE6DB /* DemoVc.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF76F7A1ED33AA3000CE6DB /* DemoVc.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		89A287E51ED2E9530009B262 /* TFContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFContentView.m; sourceTree = "<group>"; };
 		89A287E71ED2E97B0009B262 /* TFTopSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTopSlideView.h; sourceTree = "<group>"; };
 		89A287E81ED2E97B0009B262 /* TFTopSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFTopSlideView.m; sourceTree = "<group>"; };
+		FEF76F791ED33AA3000CE6DB /* DemoVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoVc.h; sourceTree = "<group>"; };
+		FEF76F7A1ED33AA3000CE6DB /* DemoVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoVc.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,8 @@
 				89A287C61ED2E3CE0009B262 /* AppDelegate.m */,
 				89A287C81ED2E3CE0009B262 /* ViewController.h */,
 				89A287C91ED2E3CE0009B262 /* ViewController.m */,
+				FEF76F791ED33AA3000CE6DB /* DemoVc.h */,
+				FEF76F7A1ED33AA3000CE6DB /* DemoVc.m */,
 				89A287CB1ED2E3CE0009B262 /* Main.storyboard */,
 				89A287CE1ED2E3CE0009B262 /* Assets.xcassets */,
 				89A287D01ED2E3CE0009B262 /* LaunchScreen.storyboard */,
@@ -190,6 +195,7 @@
 				89A287E91ED2E97B0009B262 /* TFTopSlideView.m in Sources */,
 				89A287E01ED2E5190009B262 /* TFSegmentPageView.m in Sources */,
 				89A287C41ED2E3CE0009B262 /* main.m in Sources */,
+				FEF76F7B1ED33AA3000CE6DB /* DemoVc.m in Sources */,
 				89A287E31ED2E5B30009B262 /* TFSegmentStyleConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

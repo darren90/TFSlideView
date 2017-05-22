@@ -11,7 +11,7 @@
 
 @implementation TFTopSlideView
 
--(instancetype)initWithFrame:(CGRect)frame segmentStyle:(TFSegmentStyleConfig *)segmentStyle delegate:(id<UIScrollViewDelegate>)delegate titles:(NSArray *)titles{
+-(instancetype)initWithFrame:(CGRect)frame config:(TFSegmentStyleConfig *)config delegate:(id<TFScrollPageViewDelegate>)delegate titles:(NSArray *)titles{
     if (self = [super initWithFrame:frame]) {
 
     }

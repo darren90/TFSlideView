@@ -10,6 +10,8 @@
 #import "TFContentView.h"
 #import "TFTopSlideView.h"
 
+
+
 /**
 文件布局 TFSegmentPageView :
                 顶部：TFTopSlideView
@@ -41,18 +43,24 @@
 
 
 -(instancetype)initWithFrame:(CGRect)frame config:(TFSegmentStyleConfig *)config titles:(NSArray<NSString *> *)titles parentViewController:(UIViewController *)parentViewController delegate:(id<TFScrollPageViewDelegate>)delegate{
-    if (self = [super init]) {
+    if (self = [super initWithFrame:frame]) {
         self.delegate = delegate;
         if (config == nil) {
             config = [TFSegmentStyleConfig config];
         }
         self.config = config;
-
+        self.delegate = delegate;
+        
         self.titlesArray = titles;
 
         [self initSub];
     }
     return self;
+}
+
+//刷新的接口
+-(void)reloadNewTitles:(NSArray<NSString *> *)newTitles{
+
 }
 
 -(void)initSub{
