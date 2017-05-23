@@ -11,9 +11,24 @@
 #import "TFSegmentPageView.h"
 
 @class TFSegmentPageView;
+@class TFTitleView;
+
+typedef void(^TitleDidClickBlock)(TFTitleView *titleView,NSInteger index) ;
+
 @interface TFTopSlideView : UIView
 
-- (instancetype)initWithFrame:(CGRect )frame config:(TFSegmentStyleConfig *)config delegate:(id<TFScrollPageViewDelegate>)delegate titles:(NSArray *)titles;
+// 所有的标题
+@property (strong, nonatomic) NSArray *titles;
 
+@property (nonatomic,weak)id<TFScrollPageViewDelegate> delegate;
+
+
+- (instancetype)initWithFrame:(CGRect )frame config:(TFSegmentStyleConfig *)config delegate:(id<TFScrollPageViewDelegate>)delegate titles:(NSArray *)titles titleDidClick:(TitleDidClickBlock)titleDidClick;
+
+
+- (void)selctWithProgress:(CGFloat)progress oldIndex:(NSInteger)oldIndex currentIndex:(NSInteger)currentIndex;
+
+//停止滚动后，调整顶部view的颜色，缩放等等。
+- (void)adjustTitleViewEndDecelerateTocurrentIndex:(NSInteger)currentIndex;
 
 @end

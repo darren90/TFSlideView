@@ -33,14 +33,12 @@
 
 @property (nonatomic,copy)NSArray * titlesArray;
 
-
 @property (nonatomic,strong)TFSegmentStyleConfig * config;
-
 
 @end
 
 @implementation TFSegmentPageView
-
+CGFloat const ContentMarginEdge = 0;
 
 -(instancetype)initWithFrame:(CGRect)frame config:(TFSegmentStyleConfig *)config titles:(NSArray<NSString *> *)titles parentViewController:(UIViewController *)parentViewController delegate:(id<TFScrollPageViewDelegate>)delegate{
     if (self = [super initWithFrame:frame]) {
@@ -70,8 +68,12 @@
 
 -(TFTopSlideView *)topView{
     if (_topView == nil) {
+
+        __weak __typeof(self) weakSelf = self;
         CGRect topRect = CGRectMake(0, 0, self.frame.size.width, self.config.topHeight);
-        TFTopSlideView *tView = [[TFTopSlideView alloc]initWithFrame:topRect config:self.config delegate:self.delegate titles:self.titlesArray];
+        TFTopSlideView *tView = [[TFTopSlideView alloc]initWithFrame:topRect config:self.config delegate:self.delegate titles:self.titlesArray  titleDidClick:^(TFTitleView *titleView, NSInteger index) {
+            [weakSelf.contentView selectIndex:index animated:NO];
+        }] ;
         [self addSubview:tView];
         _topView = tView;
     }
@@ -80,7 +82,7 @@
 
 -(TFContentView *)contentView{
     if (_contentView == nil) {
-        CGRect contentRect = CGRectMake(0.0, CGRectGetMaxY(self.topView.frame), self.frame.size.width, self.frame.size.height - CGRectGetMaxY(self.topView.frame));
+        CGRect contentRect = CGRectMake(ContentMarginEdge, CGRectGetMaxY(self.topView.frame), self.frame.size.width - 2 * ContentMarginEdge, self.frame.size.height - CGRectGetMaxY(self.topView.frame));
         TFContentView *cView = [[TFContentView alloc]initWithFrame:contentRect topView:self.topView parentViewController:self.fatherVc delegate:self.delegate];
         [self addSubview:cView];
         _contentView = cView;

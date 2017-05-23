@@ -42,23 +42,23 @@
                     @"今日房价",
                     @"头像",  ];
 
-    CGRect sfame = CGRectMake(0, 64,self.view.bounds.size.width, self.view.bounds.size.height - 64.0);
+    CGRect sfame = CGRectMake(0, 20,self.view.bounds.size.width, self.view.bounds.size.height - 20);
     TFSegmentPageView *pageView = [[TFSegmentPageView alloc]initWithFrame:sfame config:nil titles:self.titles parentViewController:self delegate:self];
     [self.view addSubview:pageView];
     self.pageView = pageView;
 }
 
 
--(NSInteger)numberOfItemsInPageView:(TFSegmentPageView *)pageView{
+- (NSInteger)numberOfItemsInPageView:(TFSegmentPageView *)pageView{
     return self.titles.count;
 }
 
--(UIViewController *)pageView:(TFSegmentPageView *)pageView vcForRowAtIndex:(NSInteger)index{
+- (UIViewController *)pageView:(TFSegmentPageView *)pageView vcForRowAtIndex:(NSInteger)index{
     DemoVc *vc = [[DemoVc alloc]init];
     NSString *title = [NSString stringWithFormat:@"--:%@-%ld",self.titles[index],(long)index];
     vc.title = title;
-    vc.sTitle = title;
     vc.view.backgroundColor = KRandomColor;
+    vc.sTitle = title;
     return vc;
 }
 

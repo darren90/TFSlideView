@@ -22,19 +22,24 @@
     
     
     UILabel *label = [[UILabel alloc]init];
-//    self.contentLabel = label;
+    self.contentLabel = label;
     label.textColor = [UIColor blackColor];
     [self.view addSubview:label];
     label.frame = CGRectMake(100, 100, 300, 300);
     label.center = self.view.center;
     label.textAlignment = NSTextAlignmentCenter;
     //    label.frame.size = CGSizeMake(300, 50);
+    label.text = self.sTitle;
 }
 
 - (void)setSTitle:(NSString *)sTitle{
     _sTitle = sTitle;
     
     self.contentLabel.text = sTitle;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    NSLog(@"--Demo-:%@",NSStringFromCGRect(self.view.frame));
 }
 
 - (void)didReceiveMemoryWarning {

@@ -18,6 +18,7 @@
 		89A287E31ED2E5B30009B262 /* TFSegmentStyleConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A287E21ED2E5B30009B262 /* TFSegmentStyleConfig.m */; };
 		89A287E61ED2E9530009B262 /* TFContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A287E51ED2E9530009B262 /* TFContentView.m */; };
 		89A287E91ED2E97B0009B262 /* TFTopSlideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A287E81ED2E97B0009B262 /* TFTopSlideView.m */; };
+		89A287EC1ED3D82E0009B262 /* TFTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A287EB1ED3D82E0009B262 /* TFTitleView.m */; };
 		FEF76F7B1ED33AA3000CE6DB /* DemoVc.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF76F7A1ED33AA3000CE6DB /* DemoVc.m */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,8 @@
 		89A287E51ED2E9530009B262 /* TFContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFContentView.m; sourceTree = "<group>"; };
 		89A287E71ED2E97B0009B262 /* TFTopSlideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTopSlideView.h; sourceTree = "<group>"; };
 		89A287E81ED2E97B0009B262 /* TFTopSlideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFTopSlideView.m; sourceTree = "<group>"; };
+		89A287EA1ED3D82E0009B262 /* TFTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTitleView.h; sourceTree = "<group>"; };
+		89A287EB1ED3D82E0009B262 /* TFTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFTitleView.m; sourceTree = "<group>"; };
 		FEF76F791ED33AA3000CE6DB /* DemoVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoVc.h; sourceTree = "<group>"; };
 		FEF76F7A1ED33AA3000CE6DB /* DemoVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoVc.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +114,8 @@
 				89A287E51ED2E9530009B262 /* TFContentView.m */,
 				89A287E71ED2E97B0009B262 /* TFTopSlideView.h */,
 				89A287E81ED2E97B0009B262 /* TFTopSlideView.m */,
+				89A287EA1ED3D82E0009B262 /* TFTitleView.h */,
+				89A287EB1ED3D82E0009B262 /* TFTitleView.m */,
 				89A287E11ED2E5B30009B262 /* TFSegmentStyleConfig.h */,
 				89A287E21ED2E5B30009B262 /* TFSegmentStyleConfig.m */,
 			);
@@ -189,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89A287CA1ED2E3CE0009B262 /* ViewController.m in Sources */,
+				89A287EC1ED3D82E0009B262 /* TFTitleView.m in Sources */,
 				89A287C71ED2E3CE0009B262 /* AppDelegate.m in Sources */,
 				89A287DD1ED2E4A20009B262 /* UIView+RRFrame.m in Sources */,
 				89A287E61ED2E9530009B262 /* TFContentView.m in Sources */,

@@ -8,8 +8,9 @@
 
 #import "TFContentView.h"
 
-@interface TFContentView()<UICollectionViewDelegate,UICollectionViewDataSource>
-
+@interface TFContentView()<UICollectionViewDelegate,UICollectionViewDataSource>{
+    CGFloat   _oldOffSetX;
+}
 @property (nonatomic,weak)id<TFScrollPageViewDelegate> delegate;
 @property (nonatomic,weak)UIViewController * fatherVc;
 
@@ -21,6 +22,10 @@
 @property (assign, nonatomic) NSInteger oldIndex;
 
 @property (nonatomic,assign)float systemVersion;
+
+
+@property (nonatomic,weak)TFTopSlideView * topView;
+
 
 // 当前控制器
 @property (strong, nonatomic, readonly) UIViewController *currentChildVc;
@@ -37,7 +42,7 @@ NSString * const cellID = @"cellID";
 -(instancetype)initWithFrame:(CGRect)frame topView:(TFTopSlideView *)topView parentViewController:(UIViewController *)parentViewController delegate:(id<TFScrollPageViewDelegate>)delegate{
     if (self = [super initWithFrame:frame]) {
         self.fatherVc = parentViewController;
-
+        self.topView= topView;
         self.systemVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
         self.delegate = delegate;
 
@@ -47,6 +52,8 @@ NSString * const cellID = @"cellID";
 }
 
 -(void)initSub{
+    _currentIndex = 0;
+    _oldOffSetX = 0.0;
 
     [self addSubview:self.collectionView];
 
@@ -125,11 +132,74 @@ NSString * const cellID = @"cellID";
     _currentChildVc.view.frame = cell.contentView.bounds;
     [cell.contentView addSubview:_currentChildVc.view];
     [_currentChildVc didMoveToParentViewController:self.fatherVc];
-    
 
 }
 
+- (void)selectIndex:(NSInteger)index animated:(BOOL)animated{
+    if (index >= _itemsCount) {
+        return;
+    }
 
+    _oldIndex = _currentIndex;
+    _currentIndex = index;
+
+    NSIndexPath *path = [NSIndexPath indexPathForItem:index inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.x <= 0 || scrollView.contentOffset.x >= scrollView.contentSize.width - scrollView.bounds.size.width) {
+        return;
+    }
+
+
+    CGFloat tempProgress = scrollView.contentOffset.x / self.bounds.size.width;
+    NSInteger tempIndex = tempProgress;
+
+    CGFloat progress = tempProgress - floor(tempProgress);
+    CGFloat deltaX = scrollView.contentOffset.x - _oldOffSetX;
+
+    if (deltaX > 0) {// 向左
+        if (progress == 0.0) {
+            return;
+        }
+        self.currentIndex = tempIndex + 1;
+        self.oldIndex = tempIndex;
+    } else if (deltaX < 0) {
+        progress = 1.0 - progress;
+        self.oldIndex = tempIndex + 1;
+        self.currentIndex = tempIndex;
+
+    } else {
+        return;
+    }
+
+
+    //选中上面的TitleView
+    if(self.topView){
+        [self.topView selctWithProgress:progress oldIndex:self.oldIndex currentIndex:self.currentIndex];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    _oldOffSetX = scrollView.contentOffset.x;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    NSInteger currentIndex = (scrollView.contentOffset.x / self.bounds.size.width);
+
+    NSLog(@"-currentIndex-:%ld--self:%ld",(long)currentIndex,(long)self.currentIndex);
+    //选中上面的TitleView
+//    if(self.topView){
+//        [self.topView selctWithProgress:1.0 oldIndex:self.oldIndex currentIndex:self.currentIndex];
+//    }
+
+    if(self.topView){
+        [self.topView adjustTitleViewEndDecelerateTocurrentIndex:currentIndex];
+    }
+}
 
 -(UICollectionView *)collectionView{
     if (_collectionView == nil) {
@@ -154,6 +224,11 @@ NSString * const cellID = @"cellID";
         _collectionView = collectionView;
     }
     return _collectionView;
+}
+
+- (void)setCurrentIndex:(NSInteger)currentIndex{
+    _currentIndex = currentIndex;
+
 }
 
 -(NSMutableDictionary<NSString *,UIViewController *> *)childVcsDic{
