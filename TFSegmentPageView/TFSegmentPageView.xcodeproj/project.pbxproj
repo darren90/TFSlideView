@@ -23,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89474DBC1ED684710061ECB8 /* TFScrollPageViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFScrollPageViewDelegate.h; sourceTree = "<group>"; };
 		89A287BF1ED2E3CE0009B262 /* TFSegmentPageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFSegmentPageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A287C31ED2E3CE0009B262 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89A287C51ED2E3CE0009B262 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 				89A287EB1ED3D82E0009B262 /* TFTitleView.m */,
 				89A287E11ED2E5B30009B262 /* TFSegmentStyleConfig.h */,
 				89A287E21ED2E5B30009B262 /* TFSegmentStyleConfig.m */,
+				89474DBC1ED684710061ECB8 /* TFScrollPageViewDelegate.h */,
 			);
 			path = TFSegmentPageView;
 			sourceTree = "<group>";

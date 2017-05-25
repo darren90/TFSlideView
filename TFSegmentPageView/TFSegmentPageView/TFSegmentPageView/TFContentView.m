@@ -74,6 +74,27 @@ NSString * const cellID = @"cellID";
 }
 
 
+- (void)reloadNewTitles{
+
+    [self.childVcsDic enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, UIViewController * _Nonnull childVc, BOOL * _Nonnull stop) {
+        [TFContentView removeChildVc:childVc];
+        childVc = nil;
+
+    }];
+    self.childVcsDic = nil;
+    [self initSub];
+    [self.collectionView reloadData];
+//    [self setContentOffSet:CGPointZero animated:NO];
+    [self selectIndex:0 animated:NO];
+}
+
++ (void)removeChildVc:(UIViewController *)childVc {
+    [childVc willMoveToParentViewController:nil];
+    [childVc.view removeFromSuperview];
+    [childVc removeFromParentViewController];
+}
+
+
 #pragma mark - UICollectionViewDelegate --- UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -116,7 +137,7 @@ NSString * const cellID = @"cellID";
     NSString *key = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
     _currentChildVc = self.childVcsDic[key];
     
-    BOOL isFirstLoad = (_currentChildVc == nil);
+//    BOOL isFirstLoad = (_currentChildVc == nil);
     
     if (_currentChildVc == nil) {
         _currentChildVc = [self.delegate pageView:nil vcForRowAtIndex:indexPath.item];
@@ -131,8 +152,9 @@ NSString * const cellID = @"cellID";
     
     _currentChildVc.view.frame = cell.contentView.bounds;
     [cell.contentView addSubview:_currentChildVc.view];
+    NSLog(@"---current:%@",NSStringFromCGRect(_currentChildVc.view.frame));
     [_currentChildVc didMoveToParentViewController:self.fatherVc];
-
+    [_currentChildVc.view layoutIfNeeded];
 }
 
 - (void)selectIndex:(NSInteger)index animated:(BOOL)animated{
@@ -189,12 +211,6 @@ NSString * const cellID = @"cellID";
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     NSInteger currentIndex = (scrollView.contentOffset.x / self.bounds.size.width);
-
-    NSLog(@"-currentIndex-:%ld--self:%ld",(long)currentIndex,(long)self.currentIndex);
-    //选中上面的TitleView
-//    if(self.topView){
-//        [self.topView selctWithProgress:1.0 oldIndex:self.oldIndex currentIndex:self.currentIndex];
-//    }
 
     if(self.topView){
         [self.topView adjustTitleViewEndDecelerateTocurrentIndex:currentIndex];

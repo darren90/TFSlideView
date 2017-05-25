@@ -33,7 +33,7 @@
 /** 是否显示附加的按钮 默认为NO*/
 @property (assign, nonatomic, getter=isShowExtraButton) BOOL showExtraButton;
 
-/** 右边的二额外的距离 默认:0*/
+/** 右边的额外的距离：用户添加按钮，在人人美剧版本中如果中间的item值较小，这个值会 * 2，用于添加两个按钮 默认:0*/
 @property (nonatomic,assign)CGFloat extraEdgeright;
 
 /** 默认选中的Item 默认为0*/

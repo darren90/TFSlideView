@@ -9,19 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "TFSegmentStyleConfig.h"
 #import "TFTopSlideView.h"
-#import "TFSegmentPageView.h"
+#import "TFScrollPageViewDelegate.h"
 
 @class TFSegmentPageView;
 @interface TFContentView : UIView
 
 - (instancetype)initWithFrame:(CGRect)frame topView:(TFTopSlideView *)topView parentViewController:(UIViewController *)parentViewController delegate:(id<TFScrollPageViewDelegate>) delegate;
-
-
-/** 给外界可以设置ContentOffSet的方法 */
-- (void)setContentOffSet:(CGPoint)offset animated:(BOOL)animated;
-
+ 
 /** 选中某一个 */
 
 - (void)selectIndex:(NSInteger)index animated:(BOOL)animated;
+
+
+/** 重新刷内容*/
+- (void)reloadNewTitles;
+
 
 @end

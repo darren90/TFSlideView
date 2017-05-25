@@ -29,26 +29,48 @@
     //必要的设置, 如果没有设置可能导致内容显示不正常
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.titles = @[@"新闻头条",
+    self.titles = @[@"Hi!推荐",
                     @"国际要闻",
-                    @"体育",
-                    @"中国足球",
-                    @"汽车",
-                    @"囧途旅游",
-                    @"幽默搞笑",
-                    @"视频",
-                    @"无厘头",
-                    @"美女图片",
-                    @"今日房价",
-                    @"头像",  ];
+                    @"美国",
+ ];
+
+    TFSegmentStyleConfig *config = [TFSegmentStyleConfig config];
+    config.extraEdgeright = 30;
+    config.selectedTitleColor = [UIColor blackColor];
 
     CGRect sfame = CGRectMake(0, 20,self.view.bounds.size.width, self.view.bounds.size.height - 20);
-    TFSegmentPageView *pageView = [[TFSegmentPageView alloc]initWithFrame:sfame config:nil titles:self.titles parentViewController:self delegate:self];
+    TFSegmentPageView *pageView = [[TFSegmentPageView alloc]initWithFrame:sfame config:config titles:self.titles parentViewController:self delegate:self];
     [self.view addSubview:pageView];
     self.pageView = pageView;
+
+
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.pageView.topView addSubview:btn];
+    [btn setTitle:@"12" forState:UIControlStateNormal];
+    btn.backgroundColor = [UIColor cyanColor];
+    btn.frame = CGRectMake(self.view.frame.size.width-30, 10, 30, 30);
+    [btn addTarget:self action:@selector(relodItem) forControlEvents:UIControlEventTouchUpInside];
+
+    NSLog(@"-doubleExtraScreen-:%d",self.pageView.topView.doubleExtraScreen);
 }
 
+- (void)relodItem{
+    self.titles = [self setupNewTitles];
+    // 传入新的titles同时reload
+    [self.pageView reloadNewTitles:self.titles];
 
+    NSLog(@"-doubleExtraScreen-:%d",self.pageView.topView.doubleExtraScreen);
+}
+
+- (NSArray *)setupNewTitles {
+
+    NSMutableArray *tempt = [NSMutableArray array];
+    for (int  i =0; i < 20; i++) {
+        [tempt addObject:[NSString stringWithFormat:@"新标题%d",i]];
+    }
+
+    return tempt;
+}
 - (NSInteger)numberOfItemsInPageView:(TFSegmentPageView *)pageView{
     return self.titles.count;
 }

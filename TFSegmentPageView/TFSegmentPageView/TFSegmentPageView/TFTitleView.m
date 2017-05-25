@@ -27,6 +27,12 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
 
+        self.iconView = [[UIImageView alloc] init];
+        self.iconView.contentMode = UIViewContentModeCenter;
+        self.iconView.frame = self.bounds;
+        self.iconView.hidden = YES;
+        [self addSubview:self.iconView];
+
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor clearColor];
 //        _isShowImage = NO;
@@ -39,6 +45,7 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
+    self.iconView.frame = self.bounds;
 
     self.label.frame = self.bounds;
 }
@@ -68,6 +75,13 @@
     CGRect bounds = [text boundingRectWithSize:CGSizeMake(MAXFLOAT, 0.0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: self.label.font} context:nil];
     _titleSize = bounds.size;
 
+    if ([text isEqualToString:@"美国"]) {
+        self.label.hidden = YES;
+        self.iconView.hidden = NO;
+        UIImage *im = [UIImage imageNamed:@"ic_tianjiagengduo"];
+        self.iconView.image = im;
+        _titleSize = im.size;
+    }
 }
 
 - (void)setTextColor:(UIColor *)textColor {
@@ -78,7 +92,8 @@
 
 - (void)setSelected:(BOOL)selected {
     _selected = selected;
-    self.imageView.highlighted = selected;
+
+//    self.iconView.highlighted = selected;
 }
 
 - (CGFloat)titleViewWidth {

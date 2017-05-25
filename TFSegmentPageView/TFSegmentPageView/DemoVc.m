@@ -14,13 +14,13 @@
 
 @implementation DemoVc
 
+#warning TODO -- 使用 autolayout 可以避免很多问题
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     NSLog(@"--Demo--:%@",self.title);
-    
-    
+
     UILabel *label = [[UILabel alloc]init];
     self.contentLabel = label;
     label.textColor = [UIColor blackColor];
@@ -30,6 +30,15 @@
     label.textAlignment = NSTextAlignmentCenter;
     //    label.frame.size = CGSizeMake(300, 50);
     label.text = self.sTitle;
+
+    NSLog(@"---self frame: %@",NSStringFromCGRect(self.view.frame));
+
+}
+
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+
+    NSLog(@"---new self frame: %@",NSStringFromCGRect(self.view.frame));
 }
 
 - (void)setSTitle:(NSString *)sTitle{

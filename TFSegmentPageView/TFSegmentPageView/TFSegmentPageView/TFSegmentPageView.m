@@ -24,8 +24,6 @@
 
 @property (nonatomic,weak)TFContentView * contentView;
 
-@property (nonatomic,weak)TFTopSlideView * topView;
-
 @property (nonatomic,weak)UIViewController * fatherVc;
 
 
@@ -35,10 +33,14 @@
 
 @property (nonatomic,strong)TFSegmentStyleConfig * config;
 
+//弹性吸附
+@property (nonatomic, strong) UIDynamicAnimator *animator;
+
+
 @end
 
 @implementation TFSegmentPageView
-CGFloat const ContentMarginEdge = 0;
+CGFloat const ContentMarginEdge = 18;
 
 -(instancetype)initWithFrame:(CGRect)frame config:(TFSegmentStyleConfig *)config titles:(NSArray<NSString *> *)titles parentViewController:(UIViewController *)parentViewController delegate:(id<TFScrollPageViewDelegate>)delegate{
     if (self = [super initWithFrame:frame]) {
@@ -58,12 +60,45 @@ CGFloat const ContentMarginEdge = 0;
 
 //刷新的接口
 -(void)reloadNewTitles:(NSArray<NSString *> *)newTitles{
+    self.titlesArray = nil;
+    self.titlesArray = newTitles.copy;
 
+    [self.topView reloadWithNewTitles:self.titlesArray];
+    [self.contentView reloadNewTitles];
 }
 
 -(void)initSub{
     self.topView.backgroundColor = [UIColor whiteColor];
+    [self initImageView];
     self.contentView.backgroundColor = [UIColor whiteColor];
+}
+
+
+-(void)initImageView{
+    UIImage *image = [UIImage imageNamed:@"bg_blue-1"];
+    UIImageView *icon = [[UIImageView alloc]initWithImage:image];
+    [self addSubview:icon];
+    icon.contentMode = UIViewContentModeScaleToFill;
+    CGFloat h = self.frame.size.width * (image.size.height / image.size.width * 1.0 );
+    icon.frame = CGRectMake(0, CGRectGetMaxY(self.topView.frame), self.frame.size.width, h);
+
+//    icon.backgroundColor = [UIColor cyanColor];
+    // 初始化仿真者
+//    UIDynamicAnimator *animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
+//    self.animator = animator;
+//
+//    CGPoint anchorPoint = icon.center;
+//    UIOffset offset = UIOffsetMake(0.01, 0.01);
+//
+//    // 3. 添加附着行为
+//    UIAttachmentBehavior *attachment = [[UIAttachmentBehavior alloc] initWithItem:icon offsetFromCenter:offset attachedToAnchor:anchorPoint];
+//    attachment.frequency = 1.1f;
+//    attachment.damping = 10;
+//    [self.animator addBehavior:attachment];
+//
+//    // 频率(让线具有弹性)
+//    UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[icon]];
+//    [self.animator addBehavior:gravity];
 }
 
 -(TFTopSlideView *)topView{
@@ -82,7 +117,7 @@ CGFloat const ContentMarginEdge = 0;
 
 -(TFContentView *)contentView{
     if (_contentView == nil) {
-        CGRect contentRect = CGRectMake(ContentMarginEdge, CGRectGetMaxY(self.topView.frame), self.frame.size.width - 2 * ContentMarginEdge, self.frame.size.height - CGRectGetMaxY(self.topView.frame));
+        CGRect contentRect = CGRectMake(ContentMarginEdge, CGRectGetMaxY(self.topView.frame) + ContentMarginEdge, self.frame.size.width - 2 * ContentMarginEdge, self.frame.size.height - CGRectGetMaxY(self.topView.frame));
         TFContentView *cView = [[TFContentView alloc]initWithFrame:contentRect topView:self.topView parentViewController:self.fatherVc delegate:self.delegate];
         [self addSubview:cView];
         _contentView = cView;

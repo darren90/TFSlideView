@@ -21,7 +21,7 @@
 @property (strong, nonatomic) UIImage *normalImage;
 @property (strong, nonatomic) UIImage *selectedImage;
 
-@property (strong, nonatomic, readonly) UIImageView *imageView;
+@property (strong, nonatomic) UIImageView *iconView;
 
 @property (strong, nonatomic) UILabel *label;
 

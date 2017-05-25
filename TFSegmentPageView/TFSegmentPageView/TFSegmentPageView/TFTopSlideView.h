@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TFSegmentStyleConfig.h"
-#import "TFSegmentPageView.h"
+#import "TFScrollPageViewDelegate.h"
 
 @class TFSegmentPageView;
 @class TFTitleView;
@@ -30,5 +30,12 @@ typedef void(^TitleDidClickBlock)(TFTitleView *titleView,NSInteger index) ;
 
 //停止滚动后，调整顶部view的颜色，缩放等等。
 - (void)adjustTitleViewEndDecelerateTocurrentIndex:(NSInteger)currentIndex;
+
+/** 重新刷新标题的内容*/
+- (void)reloadWithNewTitles:(NSArray *)titles;
+
+
+//是否有2倍的额外屏幕距离
+@property (nonatomic,assign)BOOL doubleExtraScreen;
 
 @end
