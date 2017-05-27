@@ -30,8 +30,10 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.titles = @[@"Hi!推荐",
-                    @"国际要闻",
-                    @"美国",
+                    @"美剧",
+                    @"视频",
+                    @"推荐",
+                    @"Movie",
  ];
 
     TFSegmentStyleConfig *config = [TFSegmentStyleConfig config];
