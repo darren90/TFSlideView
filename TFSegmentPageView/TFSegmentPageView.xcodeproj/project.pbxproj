@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		896F4E691ED9670B0074C78A /* TFGravity.m in Sources */ = {isa = PBXBuildFile; fileRef = 896F4E681ED9670B0074C78A /* TFGravity.m */; };
 		89A287C41ED2E3CE0009B262 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A287C31ED2E3CE0009B262 /* main.m */; };
 		89A287C71ED2E3CE0009B262 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A287C61ED2E3CE0009B262 /* AppDelegate.m */; };
 		89A287CA1ED2E3CE0009B262 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A287C91ED2E3CE0009B262 /* ViewController.m */; };
@@ -25,8 +24,6 @@
 
 /* Begin PBXFileReference section */
 		89474DBC1ED684710061ECB8 /* TFScrollPageViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFScrollPageViewDelegate.h; sourceTree = "<group>"; };
-		896F4E671ED9670B0074C78A /* TFGravity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFGravity.h; sourceTree = "<group>"; };
-		896F4E681ED9670B0074C78A /* TFGravity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFGravity.m; sourceTree = "<group>"; };
 		89A287BF1ED2E3CE0009B262 /* TFSegmentPageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFSegmentPageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A287C31ED2E3CE0009B262 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		89A287C51ED2E3CE0009B262 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -123,8 +120,6 @@
 				89A287E11ED2E5B30009B262 /* TFSegmentStyleConfig.h */,
 				89A287E21ED2E5B30009B262 /* TFSegmentStyleConfig.m */,
 				89474DBC1ED684710061ECB8 /* TFScrollPageViewDelegate.h */,
-				896F4E671ED9670B0074C78A /* TFGravity.h */,
-				896F4E681ED9670B0074C78A /* TFGravity.m */,
 			);
 			path = TFSegmentPageView;
 			sourceTree = "<group>";
@@ -202,7 +197,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				89A287CA1ED2E3CE0009B262 /* ViewController.m in Sources */,
-				896F4E691ED9670B0074C78A /* TFGravity.m in Sources */,
 				89A287EC1ED3D82E0009B262 /* TFTitleView.m in Sources */,
 				89A287C71ED2E3CE0009B262 /* AppDelegate.m in Sources */,
 				89A287DD1ED2E4A20009B262 /* UIView+RRFrame.m in Sources */,

@@ -29,15 +29,18 @@
     //必要的设置, 如果没有设置可能导致内容显示不正常
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.titles = @[@"Hi!推荐",
+    self.titles = @[@"精选",
+                    @"音乐",
+                    @"时尚",
+                    @"综艺",
+                    @"娱乐",
+                    @"体育",
                     @"美剧",
-                    @"视频",
-                    @"推荐",
-                    @"Movie",
+                    @"电视剧",
  ];
 
     TFSegmentStyleConfig *config = [TFSegmentStyleConfig config];
-    config.extraEdgeright = 30;
+    config.extraEdgeright = 40;
     config.selectedTitleColor = [UIColor blackColor];
 
     CGRect sfame = CGRectMake(0, 20,self.view.bounds.size.width, self.view.bounds.size.height - 20);
@@ -48,9 +51,10 @@
 
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.pageView.topView addSubview:btn];
-    [btn setTitle:@"12" forState:UIControlStateNormal];
+    [btn setTitle:@"切换" forState:UIControlStateNormal];
     btn.backgroundColor = [UIColor cyanColor];
-    btn.frame = CGRectMake(self.view.frame.size.width-30, 10, 30, 30);
+    btn.titleLabel.font = [UIFont systemFontOfSize:10];
+    btn.frame = CGRectMake(self.view.frame.size.width-30, 10, 40, 30);
     [btn addTarget:self action:@selector(relodItem) forControlEvents:UIControlEventTouchUpInside];
 
     NSLog(@"-doubleExtraScreen-:%d",self.pageView.topView.doubleExtraScreen);
